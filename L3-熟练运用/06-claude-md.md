@@ -304,5 +304,5 @@ LOG_LEVEL=debug
 ## 下一步
 
 - 查看实际案例：[记忆功能](../L4-精通技巧/01-memory.md)
-- 学习工作流：[常见工作流](07-workflows.md)
 - 了解子代理：[子代理](../L4-精通技巧/02-subagent.md)
+- 深入学习：[任务分解](01-break-tasks.md)

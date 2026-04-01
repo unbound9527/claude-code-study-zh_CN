@@ -60,32 +60,26 @@ L0 环境配置 → L1 认识工具 → L2 掌握用法 → L3 熟练运用 → 
 
 | 文档 | 说明 |
 |:-----|:-----|
-| [什么是 AI](L1-认识工具/01-what-is-ai.md) | AI 基础概念 |
-| [第一次对话](L1-认识工具/02-first-chat.md) | 快速上手 |
+| [认识 AI 与有效对话](L1-认识工具/03-how-to-talk.md) | AI 基础 + 提问方法 |
 | [Git 版本控制](L1-认识工具/04-git.md) | 版本管理 |
-| [CLI 入门](L1-认识工具/05-cli.md) | 命令行基础 |
-| [插件生态](L1-认识工具/07-extensions.md) | VS Code 插件 |
 
 ### L2 掌握用法 — 高效使用技巧
 
 | 文档 | 说明 |
 |:-----|:-----|
-| [清晰表达需求](L2-掌握用法/01-clear-request.md) | Prompt 基础 |
-| [Claude Code 工具](L2-掌握用法/05-tools.md) | 工具使用 |
-| [语音输入](L2-掌握用法/06-voice-input.md) | 语音交互 |
-| [Prompt 高级技巧](L2-掌握用法/07-prompt-tips.md) | 进阶写法 |
+| [清晰表达需求](L2-掌握用法/01-clear-request.md) | Prompt 公式 + 高级技巧 |
+| [理解 AI 的回答](L2-掌握用法/02-understand-answer.md) | 幻觉问题 + 追问技巧 |
+| [给例子让它更懂你](L2-掌握用法/03-give-examples.md) | Few-shot 示例技巧 |
+| [Claude Code 工具详解](L2-掌握用法/05-tools.md) | 工具使用 |
 
 ### L3 熟练运用 — 进阶使用能力
 
 | 文档 | 说明 |
 |:-----|:-----|
 | [分解复杂任务](L3-熟练运用/01-break-tasks.md) | 任务拆解 |
-| [管理对话上下文](L3-熟练运用/02-manage-context.md) | 上下文技巧 |
-| [迭代优化答案](L3-熟练运用/03-iterate.md) | 迭代方法 |
-| [特殊命令](L3-熟练运用/04-special-commands.md) | 命令大全 |
-| [制作自己的模板](L3-熟练运用/05-create-templates.md) | 模板创建 |
-| [Claude.md 的作用](L3-熟练运用/06-claude-md.md) | 项目配置 |
-| [常见工作流](L3-熟练运用/07-workflows.md) | 实战工作流 |
+| [管理对话上下文](L3-熟练运用/02-manage-context.md) | 上下文管理 |
+| [迭代优化答案](L3-熟练运用/03-iterate.md) | 迭代纠错 |
+| [Claude.md 项目配置](L3-熟练运用/06-claude-md.md) | 项目级记忆 |
 
 ### L4 精通技巧 — 高级功能与定制
 
