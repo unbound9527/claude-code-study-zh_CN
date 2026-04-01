@@ -111,6 +111,7 @@ L0 环境配置 → L1 认识工具 → L2 掌握用法 → L3 熟练运用 → 
 | [从零构建：最小 Agent 系统](L5-工程化学习/02-从零构建：最小Agent系统.md) | 动手实现 |
 | [MCP 协议：扩展 Agent 能力](L5-工程化学习/03-MCP协议：扩展Agent能力.md) | 协议原理 |
 | [Hooks 机制：自定义 Agent 行为](L5-工程化学习/04-Hooks机制：自定义Agent行为.md) | Hooks 原理 |
+| [Agent 工程学习路径](L5-工程化学习/05-Agent工程学习路径.md) | 学习路径对齐 |
 
 ### L6 实践经验 — 最佳实践汇总
 
@@ -122,6 +123,23 @@ L0 环境配置 → L1 认识工具 → L2 掌握用法 → L3 熟练运用 → 
 | [常见问题](附录/常见问题.md) | FAQ |
 | [官方 Agent Teams 架构](附录/agent-teams-official.md) | 官方文档 |
 | [官方 MCP 指南](附录/mcp-official.md) | 官方文档 |
+| [检查点与回滚](附录/11-checkpoints.md) | 会话快照 |
+| [Plugins 插件系统](附录/12-plugins.md) | 功能打包 |
+| [CLI 参考](附录/13-advanced-cli.md) | 命令行详解 |
+| [Advanced Features](附录/14-advanced-features.md) | 高级功能 |
+
+---
+
+## 学习路径对齐
+
+本教程与 [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) 的 Agent 工程学习路径对应：
+
+| 本教程 | learn-claude-code | 核心理念 |
+|--------|-------------------|----------|
+| L2 掌握用法 | s01-s02 | Agent Loop + Tool Use |
+| L3 熟练运用 | s03-s04 | 规划(TodoWrite) + 子代理隔离 |
+| L4 精通技巧 | s05-s06 | Skills 按需加载 + 上下文压缩 |
+| L5 工程化学习 | s07-s12 | 任务持久化 + 后台任务 + Teams + 自组织 |
 
 ---
 
@@ -158,8 +176,10 @@ claude-code-zh-cn/
 
 **开源项目**
 
-- [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) — 学习路径参考
-- [claude-howto](https://github.com/luongnguyen/claude-howto) — 实用指南
+| 项目 | 说明 |
+|------|------|
+| [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) | Agent 工程原理教学，12 课程递进式学习（s01-s12） |
+| [claude-howto](https://github.com/luongnguyen/claude-howto) | Claude Code 实用指南，14k+ Stars |
 
 **官方文档**
 
