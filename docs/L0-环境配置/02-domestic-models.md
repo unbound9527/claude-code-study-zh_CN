@@ -15,7 +15,7 @@
 
 MiniMax 是国内领先的 AI 模型服务商，提供高性价比的 API 服务。
 
-**作者使用 49元/月 Token Plan 套餐**，足够个人日常开发使用。
+**作者使用 49元/月 Token Plan 套餐**，整体能力逊色于Claude，但按调用次数计算，足够个人日常开发使用，复杂项目可作为辅助。
 
 ### 价格
 
@@ -33,26 +33,15 @@ MiniMax 是国内领先的 AI 模型服务商，提供高性价比的 API 服务
 
 ### 获取 API Key
 
-1. 访问 [platform.minimax.io](https://platform.minimax.io)
-2. 注册账号
-3. 进入控制台 → API Key → 创建
+1. 访问 [platform.minimax.com](https://platform.minimax.com) 注册账号
+2. 购买[token plan](https://platform.minimaxi.com/subscribe/token-plan)，或通过作者分享的链接购买，可以享[9折](https://platform.minimaxi.com/subscribe/token-plan?code=Gnf6KDMG1h&source=link)
+3. 进入账户管理 → Token Plan → 复制Token Plan Key
 
-### 配置
-
-```bash
-export MINIMAX_API_KEY=your-api-key
-```
-
-### MCP 接入
+### 官网配置步骤
 
 ```bash
-npm install -g @modelcontextprotocol/server-minimax
+https://platform.minimaxi.com/docs/guides/text-ai-coding-tools
 ```
-
-### 专属优惠
-
-> 邀朋友们享 9 折专属优惠 + Builder 权益！
-> 👉 [立即参与](https://platform.minimax.com/subscribe/token-plan?code=Gnf6KDMG1h&source=link)
 
 ---
 
@@ -66,26 +55,7 @@ npm install -g @modelcontextprotocol/server-minimax
 | **百度文心** | ERNIE 4.0 | 百度自研 |
 | **Kimi** | Moonshot | 超长上下文 128K |
 
-> 如需接入，可访问各平台官网获取 API Key，通过 MCP 协议配置
-
----
-
-## MCP 通用配置
-
-```json
-{
-  "mcpServers": {
-    "domestic-model": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-xxx"],
-      "env": {
-        "API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
-
+> 如需接入，可访问各平台官网获取 API Key
 ---
 
 ## 下一步
