@@ -33,6 +33,19 @@ Anthropic（Claude 母公司）**尚未向中国内地开放**：
 - 准备海外手机号（如 Google Voice）或借用
 - 或考虑接入国产模型（详见 [国产模型接入](02-domestic-models.md)）
 
+### 想体验原生 Claude 模型？
+
+**方式一：自行注册（推荐有条件的用户）**
+- 准备海外手机号 + 支持海外支付的信用卡
+- 访问 [console.anthropic.com](https://console.anthropic.com) 注册
+
+**方式二：购买现成账号**
+- **闲鱼/淘宝搜索**："Claude API Key" 或 "Anthropic 账号"
+- 价格范围：¥10-50/月（视额度而定）
+- **注意**：选择信誉好的卖家，注意账号安全
+
+**本项目默认使用国产模型方案**，兼顾合规和成本
+
 ---
 
 ## 前置要求：Node.js 安装

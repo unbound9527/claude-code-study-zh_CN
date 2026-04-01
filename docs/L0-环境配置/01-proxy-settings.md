@@ -1,53 +1,19 @@
 # 代理配置与网络设置
 
-## 本章目标
+## 为什么需要代理
 
-- 掌握 Claude Code 的代理配置方法
-- 了解 HTTP/SOCKS 代理设置
-- 解决网络连接问题
+Claude Code 官方 API 服务器在海外，国内直连会：
+- 连接超时
+- 响应缓慢
+- 完全无法访问
 
----
-
-## 为什么需要配置代理？
-
-在国内使用 Claude Code 时，由于网络原因可能无法直接连接到 Anthropic API。配置代理可以：
-- 解决 API 连接问题
-- 提升响应速度
-- 避免网络超时
+配置代理是**国内用户必须完成**的步骤。
 
 ---
 
-## 代理类型
+## 代理配置
 
-### HTTP 代理
-
-最常见的代理类型，用于 HTTP 请求转发。
-
-```bash
-# 设置 HTTP 代理
-export HTTP_PROXY="http://127.0.0.1:7890"
-export HTTPS_PROXY="http://127.0.0.1:7890"
-
-# 或使用别名
-export http_proxy="http://127.0.0.1:7890"
-export https_proxy="http://127.0.0.1:7890"
-```
-
-### SOCKS5 代理
-
-支持更多协议，适合需要 UDP 的场景。
-
-```bash
-# 设置 SOCKS5 代理
-export SOCKS_PROXY="socks5://127.0.0.1:1080"
-export ALL_PROXY="socks5://127.0.0.1:1080"
-```
-
----
-
-## Claude Code 代理配置
-
-### 方法一：环境变量（推荐）
+### 环境变量（推荐）
 
 ```bash
 # 在 ~/.bashrc 或 ~/.zshrc 中添加
@@ -58,20 +24,16 @@ export HTTPS_PROXY="http://127.0.0.1:7890"
 source ~/.bashrc
 ```
 
-### 方法二：CLI 参数
+### CLI 参数
 
 ```bash
 # 启动时指定代理
 claude --proxy http://127.0.0.1:7890
-
-# 或
-claude --env HTTP_PROXY=http://127.0.0.1:7890
 ```
 
-### 方法三：配置文件
+### 配置文件
 
-在 `~/.claude/settings.json` 中设置：
-
+`~/.claude/settings.json`：
 ```json
 {
   "proxy": {
@@ -85,41 +47,29 @@ claude --env HTTP_PROXY=http://127.0.0.1:7890
 
 ## 常见代理软件
 
-| 软件 | 协议 | 端口 | 适用平台 |
-|------|------|------|----------|
-| **Clash** | HTTP/SOCKS5 | 7890 | Windows/Mac/Linux |
-| **Shadowsocks** | SOCKS5 | 1080 | 全平台 |
-| **V2Ray** | VMess/Trojan | 1080/8080 | 全平台 |
-| **Surge** | HTTP/SOCKS5 | 6153 | Mac/iOS |
+| 软件 | 端口 | 说明 |
+|------|------|------|
+| **Clash** | 7890 | 全平台，支持规则分流 |
+| **Clash Verge** | 7890 | Clash 的现代化界面版 |
+| **Shadowsocks** | 1080 | 轻量级 SOCKS5 代理 |
+| **V2Ray** | 1080/8080 | 支持多种协议 |
+| **Surge** | 6153 | Mac/iOS 专业代理 |
+
+> **端口号仅供参考**，请以你实际配置的端口为准
 
 ---
 
-## 网络问题排查
+## 验证配置
 
-### 检查代理是否生效
+### 测试代理
 
 ```bash
-# 测试代理连通性
 curl -x http://127.0.0.1:7890 https://api.anthropic.com
-
-# 查看当前代理设置
-echo $HTTP_PROXY
-echo $HTTPS_PROXY
 ```
 
-### 常见问题
-
-| 问题 | 解决方案 |
-|------|----------|
-| 代理后仍无法连接 | 检查代理软件是否正常运行 |
-| 认证失败 | 确认用户名密码正确 |
-| 端口被占用 | 更换代理端口 |
-| 代理链过长 | 简化代理路径 |
-
-### 验证 API 连接
+### 测试 API
 
 ```bash
-# 测试 Anthropic API
 curl -x http://127.0.0.1:7890 \
   -H "x-api-key: YOUR_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -128,14 +78,38 @@ curl -x http://127.0.0.1:7890 \
   https://api.anthropic.com/v1/messages
 ```
 
+### 查看当前代理
+
+```bash
+echo $HTTP_PROXY
+echo $HTTPS_PROXY
+```
+
+---
+
+## 常见问题
+
+| 问题 | 解决 |
+|------|------|
+| 代理后仍无法连接 | 确认代理软件正常运行 |
+| 认证失败 | 检查用户名密码 |
+| 端口被占用 | 更换代理端口 |
+| clash 规则导致直连 | 添加 Anthropic 域名到规则 |
+
 ---
 
 ## 跟做
 
 1. 确认本地代理软件正常运行
-2. 设置环境变量 `HTTP_PROXY` 和 `HTTPS_PROXY`
-3. 测试代理是否生效
-4. 验证 Claude Code 能否正常连接
+2. 设置环境变量：
+```bash
+export HTTP_PROXY="http://127.0.0.1:7890"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+```
+3. 测试代理：
+```bash
+curl -x http://127.0.0.1:7890 https://api.anthropic.com
+```
 
 ---
 
