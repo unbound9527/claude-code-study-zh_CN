@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-Claude Code 中文学习教程，7 个学习阶段，40+ 个 Markdown 文档。
+Claude Code 中文学习教程。
 
 ## 目录结构
 
