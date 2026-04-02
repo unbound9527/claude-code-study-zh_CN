@@ -49,7 +49,7 @@ Claude Code 中文学习教程。
 - Claude Code CLI
 - MCP - filesystem, github
 - Hooks - preToolUse, postCommit
-- Agent Teams - quality-check-team
+- Agent Teams
 
 ## Git 规范
 

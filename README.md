@@ -1,11 +1,14 @@
-# Claude Code 中文教程
+# Claude Code 中文教程 ✨
 
-> 从零开始，系统学习 Claude Code，成为 AI 协作高手。
+> **从零开始，系统掌握 Claude Code，成为真正的 AI 协作高手。**
+> 无论你是编程新手还是资深开发者，都能在这里找到属于自己的进阶路径。
 
 [![GitHub stars](https://img.shields.io/github/stars/unbound9527/claude-code-zh_CN?style=flat&color=gold)](https://github.com/unbound9527/claude-code-zh_CN/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/unbound9527/claude-code-zh_CN?style=flat)](https://github.com/unbound9527/claude-code-zh_CN/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-purple)](https://code.claude.com)
+
+**🚀 [通过PPT学习 →](https://unbound9527.github.io/claude-code-study-zh_CN)**
 
 ---
 
@@ -22,13 +25,19 @@
 
 ## 这是什么
 
-一套完整的学习路径，帮你从"第一次用 AI"到"熟练使用 Claude Code"。
+这是一套**最完整、最系统化的中文 Claude Code 学习路径**。
 
-**特别适合**：对 AI 工具感兴趣的任何人。无论你是刚接触命令行的技术新手，还是想深度定制 Agent 的资深架构师。
+从「第一次打开 Claude」到「熟练搭建复杂 AI Agent」，分成 **L1 到 L4 四个清晰阶段**，帮你一步步成为 AI 协作高手。
+
+**特别适合**：
+- 想用 AI 大幅提升 coding 效率的开发者
+- 对 Agent、Prompt、自动化工作流感兴趣的技术人
+- 希望系统学习而非零散收集资料的朋友
+
 
 ---
 
-## 学习路径
+## 学习路径一览
 
 ```
 L1 掌握用法 → L2 熟练运用 → L3 技术视角 → L4 实践经验
@@ -99,39 +108,34 @@ L1 掌握用法 → L2 熟练运用 → L3 技术视角 → L4 实践经验
 | [工作流](L4-实践经验/04-workflow.md) | 自动化工作流 |
 | [TDD](L4-实践经验/05-TDD.md) | 测试驱动开发 |
 
-### 附录 — 参考资料
-
-| 文档 | 说明 |
-|:-----|:-----|
-| [Prompt 模板库](附录/prompt模板库.md) | 模板集合 |
-| [Agent Teams 官方](附录/agent-teams-official.md) | 官方文档 |
-| [MCP 官方](附录/mcp-official.md) | 官方文档 |
-| [检查点与回滚](附录/11-checkpoints.md) | 会话快照 |
-| [Plugins 插件](附录/12-plugins.md) | 功能打包 |
-| [CLI 参考](附录/13-advanced-cli.md) | 命令行详解 |
-| [高级功能](附录/14-advanced-features.md) | 高级功能 |
-
 ---
 
 ## 项目特色
 
-| 特色 | 说明 |
-|:-----|:-----|
-| **由浅入深** | 从安装到工程化实现，循序渐进 |
-| **中文原创** | 专为中文用户设计，告别机翻 |
-| **免费开源** | MIT 协议，欢迎贡献 |
+- **由浅入深**：结构清晰，层层递进，不迷路
+- **中文原创**：所有内容均为中文撰写 + 实战总结，非机翻
+- **持续更新**：结合最新 Claude Code 特性
+- **免费开源**：MIT 协议，欢迎提交 PR 一起完善
+
+---
+
+## 如何开始？
+
+1. **Star 这个仓库**（方便随时回来学习）
+2. 从 **[L1 掌握用法](/L1-掌握用法/01-install.md)** 开始
+3. 边学边实践，把学到的 Prompt 和 Skills 应用到自己的项目中
+4. 遇到问题欢迎提交 Issue 或 PR
 
 ---
 
 ## 项目结构
 
 ```
-claude-code-zh-cn/
+claude-code-study-zh_CN/
 ├── L1-掌握用法/      # 入门基础
 ├── L2-熟练运用/      # 进阶能力
 ├── L3-技术视角/      # 原理实现
 ├── L4-实践经验/      # 最佳实践
-├── 附录/             # 模板库、FAQ、官方文档
 ├── .claude/          # 自定义 Skill
 ├── CLAUDE.md         # 项目规范
 └── README.md
