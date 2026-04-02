@@ -3,38 +3,111 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Claude Code 中文教程 - 互动演示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 中文教程 - 互动魔法书</title>
+
+    <!-- Reveal.js 核心文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         body {
-            font-family: system-ui;
-            text-align: center;
-            padding: 100px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            font-family: "Microsoft YaHei", system-ui;
         }
         
-        h1 {
-            font-size: 3rem;
+        .reveal h1,
+        .reveal h2 {
+            color: #a78bfa;
         }
         
-        .btn {
-            display: inline-block;
-            margin-top: 50px;
-            padding: 15px 40px;
-            background: white;
-            color: #667eea;
-            font-size: 1.3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
+        .magic {
+            color: #c4b5fd;
+            font-size: 1.2em;
         }
     </style>
 </head>
 
 <body>
-    <h1>✨ Claude生活魔法书 / Claude Code 中文教程</h1>
-    <p style="font-size: 1.5rem; margin: 30px 0;">演示页面正在建设中...</p>
-    <a href="https://github.com/unbound9527/claude-code-study-zh_CN" class="btn">返回仓库</a>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 第1页：标题 -->
+            <section>
+                <h1 style="font-size: 3.5em;">✨ Claude Code 中文教程</h1>
+                <p class="magic">从零到高手 · 系统学习路径</p>
+                <p><strong>L1 → L2 → L3 → L4</strong></p>
+                <br>
+                <h3>专为中文开发者打造的 Claude Code 实战宝典</h3>
+            </section>
+
+            <!-- 第2页：项目介绍 -->
+            <section>
+                <h2>这是什么？</h2>
+                <p style="font-size: 1.4em; line-height: 1.6;">
+                    一套 <strong>最完整、最系统</strong> 的 Claude Code 中文学习教程<br> 从第一次打开 Claude 到熟练搭建复杂 AI Agent
+                </p>
+            </section>
+
+            <!-- 第3页：学习路径 -->
+            <section>
+                <h2>清晰四阶段学习路径</h2>
+                <ul style="font-size: 1.3em; line-height: 2;">
+                    <li><strong>L1 掌握用法</strong> —— 快速上手</li>
+                    <li><strong>L2 熟练运用</strong> —— 效率飞跃</li>
+                    <li><strong>L3 技术视角</strong> —— 理解原理</li>
+                    <li><strong>L4 实践经验</strong> —— 工程化落地</li>
+                </ul>
+            </section>
+
+            <!-- 第4页：适合人群 -->
+            <section>
+                <h2>适合谁学习？</h2>
+                <ul style="font-size: 1.3em;">
+                    <li>编程新手想用 AI 提升效率</li>
+                    <li>开发者想掌握 AI Agent 开发</li>
+                    <li>希望系统学习而非碎片化收集的人</li>
+                </ul>
+            </section>
+
+            <!-- 第5页：快速开始 -->
+            <section>
+                <h2>如何开始？</h2>
+                <ol style="font-size: 1.4em; line-height: 2.2;">
+                    <li>⭐ Star 本仓库</li>
+                    <li>从 <strong>L1 掌握用法</strong> 开始学习</li>
+                    <li>边看边在 Claude Code 中实战</li>
+                    <li>遇到问题欢迎提交 Issue</li>
+                </ol>
+            </section>
+
+            <!-- 第6页：行动号召 -->
+            <section>
+                <h1>准备好了吗？</h1>
+                <p style="font-size: 2em; margin: 60px 0;">
+                    <a href="https://github.com/unbound9527/claude-code-study-zh_CN" style="color:#a78bfa; text-decoration:underline;">
+                     👉 立即前往仓库开始学习
+                    </a>
+                </p>
+                <p class="magic">让 Claude 成为你的超级编程搭档！</p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js 脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: "slide",
+            width: 1200,
+            height: 700,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0
+        });
+    </script>
 </body>
 
 </html>
