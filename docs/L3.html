@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L3 - 技术视角 | Claude Code 中文教程</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body { font-family: "Microsoft YaHei", system-ui; }
+        .reveal h1, .reveal h2, .reveal h3 { color: #a78bfa; }
+        .reveal h1 { font-size: 2.2em; }
+        .reveal h2 { font-size: 1.3em; border-bottom: 2px solid #a78bfa; padding-bottom: 6px; }
+        .reveal h3 { font-size: 1.1em; color: #c4b5fd; }
+        .magic { color: #c4b5fd; font-size: 0.95em; }
+        .chapter-tag {
+            display: inline-block;
+            background: #a78bfa;
+            color: #1e1b4b;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .topic-card {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 3px solid #a78bfa;
+            padding: 12px;
+            margin: 8px 0;
+            text-align: left;
+            border-radius: 0 6px 6px 0;
+        }
+        .topic-card h4 {
+            color: #c4b5fd;
+            margin: 0 0 6px 0;
+            font-size: 0.95em;
+        }
+        .topic-card ul {
+            margin: 0;
+            padding-left: 16px;
+            color: #e9d5ff;
+            font-size: 0.8em;
+        }
+        .topic-card li { margin: 3px 0; }
+        .nav-home {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 100;
+        }
+        .nav-home a {
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 0.75em;
+            padding: 5px 10px;
+            border: 1px solid #a78bfa;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        .nav-home a:hover { background: #a78bfa; color: #1e1b4b !important; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left; }
+        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; text-align: left; }
+        code { background: rgba(139, 92, 246, 0.2); padding: 2px 5px; border-radius: 3px; color: #c4b5fd; font-size: 0.8em; }
+        .highlight { color: #4ade80; }
+        .warning { color: #fbbf24; }
+        small { color: #94a3b8; font-size: 0.65em; }
+        p { font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <div class="nav-home">
+        <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- L3 封面 -->
+            <section>
+                <span class="chapter-tag"><i class="fas fa-code"></i> L3 技术视角</span>
+                <h1>理解原理</h1>
+                <p class="magic">架构 · Tools · Subagent · MCP · 记忆 · 权限 · 省Token</p>
+                <br>
+                <p style="color: #94a3b8; font-size: 0.85em;">13 个主题 · 深入源码理解核心机制</p>
+            </section>
+
+            <!-- 01 Agent架构 -->
+            <section>
+                <span class="chapter-tag">01</span>
+                <h2>Agent 架构</h2>
+                <div class="three-col">
+                    <div class="topic-card">
+                        <h4>QueryEngine 调度层</h4>
+                        <ul>
+                            <li>submitMessage() 入口</li>
+                            <li>processUserInput()</li>
+                            <li>fetchSystemPromptParts()</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>query() 循环层</h4>
+                        <ul>
+                            <li>while(true) 递归</li>
+                            <li>callModel() API调用</li>
+                            <li>runTools() 执行</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Task 任务层</h4>
+                        <ul>
+                            <li>长期运行并发任务</li>
+                            <li>tmux pane 管理</li>
+                            <li>状态机：pending→running</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="magic" style="margin-top: 10px;">
+                    <strong>核心：</strong>AsyncGenerator 作为 API 契约，CLI 和 SDK 共用同一逻辑
+                </p>
+            </section>
+
+            <!-- 02 Tools系统 -->
+            <section>
+                <span class="chapter-tag">02</span>
+                <h2>内置 Tools 系统</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>三层加载机制</h3>
+                        <ul style="font-size: 0.85em;">
+                            <li><code>getAllBaseTools()</code> — 注册</li>
+                            <li><code>getTools()</code> — 过滤</li>
+                            <li><code>assembleToolPool()</code> — 合并 MCP</li>
+                        </ul>
+                        <h3 style="margin-top: 12px;">Deferred 机制</h3>
+                        <p style="font-size: 0.85em;">isDeferredTool() 决定是否延迟加载，避免 schema 膨胀</p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>关键设计</h4>
+                        <ul>
+                            <li>Tool 接口 = 超过 40 个字段的契约</li>
+                            <li>工具是"有行为的对象"</li>
+                            <li>isConcurrencySafe 自己声明</li>
+                            <li>权限分层：PermissionMode + checkPermissions()</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03 Subagent机制 -->
+            <section>
+                <span class="chapter-tag">03</span>
+                <h2>Subagent 机制</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>两种创建方式</h3>
+                        <ul style="font-size: 0.85em;">
+                            <li><strong>进程外</strong> — tmux/iTerm2，Mailbox 通信</li>
+                            <li><strong>进程内</strong> — spawnInProcessTeammate</li>
+                        </ul>
+                        <h3 style="margin-top: 12px;">createSubagentContext()</h3>
+                        <p style="font-size: 0.8em;">逐字段决定隔离策略：clone/no-op/共享</p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>递归防护</h4>
+                        <ul>
+                            <li>queryTracking.depth 无硬限制</li>
+                            <li>"信任开发者"哲学</li>
+                            <li>Budget（maxTurns/maxBudgetUsd）是真正屏障</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 04 Harness目录 -->
+            <section>
+                <span class="chapter-tag">04</span>
+                <h2>Harness 工程分类</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>src/ 目录全景</h3>
+                        <ul style="font-size: 0.8em;">
+                            <li><strong>query/</strong> — 运行时核心</li>
+                            <li><strong>commands/</strong> — 命令系统</li>
+                            <li><strong>tools/</strong> — 工具实现</li>
+                            <li><strong>cli/</strong> — CLI 基础设施</li>
+                            <li><strong>bridge/</strong> — Bridge 系统</li>
+                            <li><strong>services/mcp/</strong> — MCP 扩展</li>
+                            <li><strong>memdir/</strong> — 记忆与上下文</li>
+                            <li><strong>assistant/</strong> — Agent</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>五层架构</h4>
+                        <ol style="font-size: 0.85em;">
+                            <li>用户界面层</li>
+                            <li>命令与交互层</li>
+                            <li>工具与 MCP 扩展层</li>
+                            <li>Agent 核心层</li>
+                            <li>基础设施层</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 05 记忆系统 -->
+            <section>
+                <span class="chapter-tag">05</span>
+                <h2>记忆系统</h2>
+                <div class="three-col">
+                    <div class="topic-card">
+                        <h4>CLAUDE.md 5级加载</h4>
+                        <p style="font-size: 0.8em;">managed &lt; user &lt; project &lt; local &lt; AutoMem</p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>AutoMemory</h4>
+                        <p style="font-size: 0.8em;">两步写入（文件+索引）确保记忆可审计</p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>AutoCompact</h4>
+                        <p style="font-size: 0.8em;">167K tokens 提前触发，选择性保留</p>
+                    </div>
+                </div>
+                <p class="magic" style="margin-top: 8px;">
+                    设计意图：<strong>可审计、可控、可组合</strong>
+                </p>
+            </section>
+
+            <!-- 06 MCP扩展 -->
+            <section>
+                <span class="chapter-tag">06</span>
+                <h2>MCP 扩展机制</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>适配器模式</h3>
+                        <p style="font-size: 0.85em;">MCPTool 将 MCP 工具适配为统一 Tool 接口</p>
+                        <ul style="font-size: 0.85em;">
+                            <li>isMcp = true 标记</li>
+                            <li>始终延迟加载</li>
+                            <li>uniqBy 去重</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Computer Use 分析</h4>
+                        <ul>
+                            <li>shims/ant-computer-use-mcp 是完整空实现</li>
+                            <li>揭示 Anthropic <strong>独占商业策略</strong></li>
+                            <li>五层激活检查确保 KAIROS 风险可控</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 07 多模型支持 -->
+            <section>
+                <span class="chapter-tag">07</span>
+                <h2>多模型支持</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>四种 Provider</h3>
+                        <ul style="font-size: 0.85em;">
+                            <li><code>firstParty</code> — Anthropic 原生</li>
+                            <li><code>bedrock</code> — AWS Bedrock</li>
+                            <li><code>vertex</code> — Google Vertex</li>
+                            <li><code>foundry</code> — Azure Foundry</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>能力覆盖机制</h4>
+                        <ul>
+                            <li>getAPIProvider() 环境变量切换</li>
+                            <li>get3PModelCapabilityOverride()</li>
+                            <li>独占功能通过 <code>!== 'firstParty'</code> 检查</li>
+                            <li>allowlist + sideQuery 验证</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 08 权限系统 -->
+            <section>
+                <span class="chapter-tag">08</span>
+                <h2>权限系统</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>三元决策链路</h3>
+                        <ul style="font-size: 0.85em;">
+                            <li><strong>PermissionMode</strong> — 总开关</li>
+                            <li><strong>alwaysAllowRules</strong> — 白名单</li>
+                            <li><strong>Tool.checkPermissions()</strong> — 自定义策略</li>
+                        </ul>
+                        <p style="font-size: 0.8em; margin-top: 8px;">三元：allow / deny / ask</p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>关键点</h4>
+                        <ul>
+                            <li>filterToolsByDenyRules 预过滤</li>
+                            <li>"不发送"比"拒绝执行"更彻底</li>
+                            <li>BashClassifier 实验性分析命令语义</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 09 省Token -->
+            <section>
+                <span class="chapter-tag">09</span>
+                <h2>省 Token 设计</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>AutoCompact</h3>
+                        <p style="font-size: 0.85em;">167K tokens 提前触发（预留 13K 操作空间）</p>
+                        <h3 style="margin-top: 10px;">选择性保留</h3>
+                        <ul style="font-size: 0.8em;">
+                            <li>最近 5 文件（各 5K）</li>
+                            <li>Skills（25K 总预算）</li>
+                            <li>Plan attachments</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>两种压缩方向</h4>
+                        <ul>
+                            <li><strong>prefix-preserving</strong> — up_to</li>
+                            <li><strong>suffix-preserving</strong> — from</li>
+                            <li>Microcompact 按需持久化</li>
+                            <li>Budget 三维度：Turn / USD / Token</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10 提示词预处理 -->
+            <section>
+                <span class="chapter-tag">10</span>
+                <h2>提示词预处理</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>预处理管道</h3>
+                        <ol style="font-size: 0.85em;">
+                            <li><code>processUserInput()</code> — 入口，slash 解析</li>
+                            <li><code>processUserInputBase()</code> — 核心，消息构建</li>
+                            <li><code>fetchSystemPromptParts()</code> — 组装 system prompt</li>
+                        </ol>
+                    </div>
+                    <div class="topic-card">
+                        <h4>关键机制</h4>
+                        <ul>
+                            <li>sideQuery 轻量验证/辅助查询</li>
+                            <li>normalizeModelStringForAPI 移除 [1m]/[2m]</li>
+                            <li>Slash 命令在预处理阶段处理</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11 KAIROS -->
+            <section>
+                <span class="chapter-tag">11</span>
+                <h2>KAIROS 通俗解释</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>让 Claude 变成</h3>
+                        <p style="color: #4ade80; font-size: 1em;">"永不关机的 AI 助手"</p>
+                        <h3>"做梦"机制</h3>
+                        <p style="font-size: 0.85em;">每晚自动整合分散日志为结构化记忆</p>
+                        <ul style="font-size: 0.8em;">
+                            <li>Orient → Gather → Consolidate → Prune</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>五层激活检查</h4>
+                        <ul>
+                            <li>feature flag</li>
+                            <li>settings.json</li>
+                            <li>目录信任</li>
+                            <li>GrowthBook</li>
+                            <li>全局状态</li>
+                        </ul>
+                        <p style="margin-top: 8px;"><small>Cron Jitter 防雷群</small></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12 ANT特权 -->
+            <section>
+                <span class="chapter-tag">12</span>
+                <h2>内部员工特权 ANT</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>USER_TYPE === 'ant'</h3>
+                        <p style="font-size: 0.85em;">构建时常量（--define 注入）</p>
+                        <h3 style="margin-top: 10px;">构建时消除</h3>
+                        <p style="font-size: 0.8em;">外部构建中所有 ANT 分支被 dead-code elimination 消除</p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>ANT 专属工具</h4>
+                        <ul>
+                            <li><strong>ConfigTool</strong> — 修改 settings.json</li>
+                            <li><strong>TungstenTool</strong> — 内部工作流</li>
+                            <li><strong>REPLTool</strong> — REPL 交互</li>
+                            <li><strong>Undercover 模式</strong> — 公开仓库隐藏内部信息</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 13 面试指南 -->
+            <section>
+                <span class="chapter-tag">13</span>
+                <h2>AI Agent 面试指南</h2>
+                <div class="two-col">
+                    <div>
+                        <h3>三层次准备</h3>
+                        <ol style="font-size: 0.85em;">
+                            <li>知道是什么（能回答）</li>
+                            <li>知道为什么（能分析）</li>
+                            <li>知道替代方案代价（能批判）</li>
+                        </ol>
+                    </div>
+                    <div class="topic-card">
+                        <h4>8 大核心主题</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>while(true) + 状态替换 vs 函数递归</li>
+                            <li>isDeferred 延迟加载</li>
+                            <li>allow/deny/ask 三元拦截</li>
+                            <li>选择性保留压缩</li>
+                            <li>进程外 vs 进程内 Subagent</li>
+                            <li>Provider 模式多模型抽象</li>
+                            <li>SleepTool + Tick 节电机制</li>
+                            <li>Cron Jitter 防雷群</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- L3 总结 -->
+            <section>
+                <h2>L3 总结</h2>
+                <div class="two-col">
+                    <div class="topic-card">
+                        <h4>已理解</h4>
+                        <ul>
+                            <li class="highlight">✅ Agent 架构三分层</li>
+                            <li class="highlight">✅ Tools 系统三层加载</li>
+                            <li class="highlight">✅ Subagent 递归防护</li>
+                            <li class="highlight">✅ Harness 五层架构</li>
+                            <li class="highlight">✅ 记忆系统可审计设计</li>
+                            <li class="highlight">✅ MCP 适配器模式</li>
+                            <li class="highlight">✅ Provider 多模型抽象</li>
+                            <li class="highlight">✅ 权限三元决策</li>
+                            <li class="highlight">✅ 省 Token 选择性保留</li>
+                            <li class="highlight">✅ 提示词预处理管道</li>
+                            <li class="highlight">✅ KAIROS 持久助手</li>
+                            <li class="highlight">✅ ANT 特权机制</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>下一步</h4>
+                        <ul>
+                            <li>进入 <a href="L4.html" style="color: #a78bfa;">L4 实践经验</a></li>
+                            <li>掌握安全最佳实践</li>
+                            <li>Git 团队协作规范</li>
+                            <li>省钱与工作流优化</li>
+                            <li>TDD 测试驱动开发</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 25px;">
+                    <a href="L4.html" style="color: #a78bfa; font-size: 1em;">
+                        继续学习 L4 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: "slide",
+            width: 1200,
+            height: 700,
+            margin: 0.06
+        });
+    </script>
+</body>
+
+</html>

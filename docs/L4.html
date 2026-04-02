@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L4 - 实践经验 | Claude Code 中文教程</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body { font-family: "Microsoft YaHei", system-ui; }
+        .reveal h1, .reveal h2, .reveal h3 { color: #a78bfa; }
+        .reveal h1 { font-size: 2.3em; }
+        .reveal h2 { font-size: 1.5em; border-bottom: 2px solid #a78bfa; padding-bottom: 8px; }
+        .magic { color: #c4b5fd; font-size: 1em; }
+        .chapter-tag {
+            display: inline-block;
+            background: #a78bfa;
+            color: #1e1b4b;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .topic-card {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid #a78bfa;
+            padding: 15px;
+            margin: 12px 0;
+            text-align: left;
+            border-radius: 0 10px 10px 0;
+        }
+        .topic-card h4 {
+            color: #c4b5fd;
+            margin: 0 0 8px 0;
+            font-size: 1.05em;
+        }
+        .topic-card ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #e9d5ff;
+            font-size: 0.85em;
+        }
+        .topic-card li { margin: 4px 0; }
+        .nav-home {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+        }
+        .nav-home a {
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 0.8em;
+            padding: 6px 12px;
+            border: 1px solid #a78bfa;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        .nav-home a:hover { background: #a78bfa; color: #1e1b4b !important; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
+        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: left; }
+        code { background: rgba(139, 92, 246, 0.2); padding: 2px 6px; border-radius: 4px; color: #c4b5fd; font-size: 0.85em; }
+        .highlight { color: #4ade80; }
+        .warning { color: #fbbf24; }
+        small { color: #94a3b8; font-size: 0.7em; }
+        p { font-size: 0.9em; }
+    </style>
+</head>
+
+<body>
+    <div class="nav-home">
+        <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- L4 封面 -->
+            <section>
+                <span class="chapter-tag"><i class="fas fa-shield-halved"></i> L4 实践经验</span>
+                <h1>工程化落地</h1>
+                <p class="magic">安全 · Git规范 · 团队规范 · 省钱 · 工作流 · TDD</p>
+                <br>
+                <p style="color: #94a3b8;">6 个主题 · 将 Claude Code 融入真实工程实践</p>
+            </section>
+
+            <!-- 安全 -->
+            <section>
+                <span class="chapter-tag">安全</span>
+                <h2>安全最佳实践</h2>
+                <div class="three-col">
+                    <div class="topic-card">
+                        <h4>三大原则</h4>
+                        <ul>
+                            <li class="highlight">✅ 最小权限</li>
+                            <li class="highlight">✅ 沙箱强制启用</li>
+                            <li class="highlight">✅ 分层权限体系</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>文件保护</h4>
+                        <ul>
+                            <li>.claudeignore</li>
+                            <li>denyPaths 双重隔离</li>
+                            <li>禁止硬编码密钥</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>沙箱配置</h4>
+                        <ul>
+                            <li>OS 级文件/网络隔离</li>
+                            <li>allowedDomains 白名单</li>
+                            <li>审计日志全量记录</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="magic" style="margin-top: 15px;">
+                    来源：Anthropic 官方 + Trail of Bits + SlowMist
+                </p>
+            </section>
+
+            <!-- Git规范 -->
+            <section>
+                <span class="chapter-tag">Git</span>
+                <h2>Git 规范</h2>
+                <div class="two-col">
+                    <div>
+                        <h3 style="color: #c4b5fd;">黄金法则</h3>
+                        <p style="color: #4ade80; font-size: 1.1em;">
+                            <strong>独立分支、原子提交、规范信息、人工必审、全程追溯</strong>
+                        </p>
+                        <h3 style="color: #c4b5fd; margin-top: 15px;">分支规范</h3>
+                        <ul style="font-size: 0.9em;">
+                            <li><code>feat/ai-collab-功能名</code></li>
+                            <li><code>fix/ai-collab-issue号</code></li>
+                            <li>禁止 AI 直接操作 main</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>提交规范</h4>
+                        <ul>
+                            <li>Conventional Commits</li>
+                            <li>必须标注 <code>(via Claude Code)</code></li>
+                            <li>原子提交 ≤50 行改动</li>
+                        </ul>
+                        <h4 style="margin-top: 12px;">PR 模板</h4>
+                        <ul>
+                            <li>变更说明 + 关联 Issue</li>
+                            <li>测试清单（100% 人工审核）</li>
+                            <li>Claude 会话 ID</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 团队规范 -->
+            <section>
+                <span class="chapter-tag">团队</span>
+                <h2>团队规范</h2>
+                <div class="two-col">
+                    <div>
+                        <h3 style="color: #c4b5fd;">必存目录</h3>
+                        <ul style="font-size: 0.9em;">
+                            <li><code>.claude/skills/</code> — 团队共享技能</li>
+                            <li><code>.claude/commands/</code> — 自定义斜杠命令</li>
+                            <li><code>.claude/hooks/</code> — 强制自动化规则</li>
+                            <li><code>.mcp.json</code> — 团队 MCP 配置</li>
+                            <li><code>.github/</code> — PR 模板/CI/CD</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Explore-Plan-Code-Commit</h4>
+                        <p style="margin: 5px 0;">强制 4 步流程</p>
+                        <ul>
+                            <li><strong>Explore</strong> — 只读扫描</li>
+                            <li><strong>Plan</strong> — 生成方案、人工审核</li>
+                            <li><strong>Code</strong> — 原子修改、自动测试</li>
+                            <li><strong>Commit</strong> — 规范提交、人工必审</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 省钱 -->
+            <section>
+                <span class="chapter-tag">省钱</span>
+                <h2>省钱最佳实践</h2>
+                <div class="three-col">
+                    <div class="topic-card">
+                        <h4>上下文控制</h4>
+                        <ul>
+                            <li>CLAUDE.md ≤150 行</li>
+                            <li>每 5-6 轮 /compact</li>
+                            <li>一次一会话，切换 /clear</li>
+                        </ul>
+                        <p style="margin-top: 8px;"><small>效果：省 40-88%</small></p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>文件过滤</h4>
+                        <ul>
+                            <li>.claudeignore 屏蔽</li>
+                            <li>node_modules/dist/.env</li>
+                            <li>手动精准加载</li>
+                        </ul>
+                        <p style="margin-top: 8px;"><small>效果：省 60%+</small></p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>模型分层</h4>
+                        <ul>
+                            <li><strong>Haiku</strong> — 简单任务</li>
+                            <li><strong>Sonnet</strong> — 业务开发</li>
+                            <li><strong>Opus</strong> — 仅必要时</li>
+                        </ul>
+                        <p style="margin-top: 8px;"><small>效果：省 40-80%</small></p>
+                    </div>
+                </div>
+                <p class="magic" style="margin-top: 10px;">
+                    <strong>公式：</strong>精简 CLAUDE.md + .claudeignore + 任务拆分 + 模型分层 + 前缀缓存
+                </p>
+            </section>
+
+            <!-- 工作流 -->
+            <section>
+                <span class="chapter-tag">工作流</span>
+                <h2>自动化工作流</h2>
+                <div class="two-col">
+                    <div>
+                        <h3 style="color: #c4b5fd;">四大自动化基石</h3>
+                        <ul style="font-size: 0.9em;">
+                            <li><strong>Hooks</strong> — 管强制（事件触发）</li>
+                            <li><strong>Skills</strong> — 管流程（模块化 SOP）</li>
+                            <li><strong>MCP</strong> — 管外部（连接真实世界）</li>
+                            <li><strong>Commands</strong> — 管快捷（一键自动化）</li>
+                        </ul>
+                        <h3 style="color: #c4b5fd; margin-top: 15px;">代理循环</h3>
+                        <p style="font-size: 0.85em;">执行 → 测试 → 失败 → 修复 → 再测试 → 通过 → 提交</p>
+                        <p style="margin-top: 5px;"><small>效果：缺陷率降低 60%</small></p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>MCP+Skill 自动化闭环</h4>
+                        <p>Skill（SOP）→ MCP（执行）→ Hook（验证）→ 闭环</p>
+                        <h4 style="margin-top: 12px;">必配 Hooks</h4>
+                        <ul>
+                            <li>PreToolUse — 安全检查</li>
+                            <li>PostToolUse — 自动格式化</li>
+                            <li>Stop — 通知</li>
+                            <li>PreCompact — 防止遗忘</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TDD -->
+            <section>
+                <span class="chapter-tag">TDD</span>
+                <h2>TDD 测试驱动开发</h2>
+                <div class="two-col">
+                    <div>
+                        <h3 style="color: #c4b5fd;">红-绿-重构</h3>
+                        <ol style="font-size: 0.9em; text-align: left;">
+                            <li><strong>红</strong> — 写测试，运行确认失败</li>
+                            <li><strong>绿</strong> — 写实现，测试通过</li>
+                            <li><strong>重构</strong> — 优化代码</li>
+                        </ol>
+                        <h3 style="color: #c4b5fd; margin-top: 15px;">强制约束</h3>
+                        <ul style="font-size: 0.85em;">
+                            <li>禁止 mock 不存在代码</li>
+                            <li>禁止修改已提交测试</li>
+                            <li>每步运行测试报告结果</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>质量门禁</h4>
+                        <ul>
+                            <li>覆盖率 ≥85%</li>
+                            <li>测试通过 + lint 无错误</li>
+                            <li>格式合规</li>
+                        </ul>
+                        <h4 style="margin-top: 12px;">Hooks 自动化</h4>
+                        <ul>
+                            <li>onStop — 自动测试</li>
+                            <li>onCommit — 强制验证</li>
+                        </ul>
+                        <p style="margin-top: 8px;"><small>效果：AI 代码缺陷率降低 60%+</small></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- L4 总结 -->
+            <section>
+                <h2>L4 总结</h2>
+                <div class="two-col">
+                    <div class="topic-card">
+                        <h4>已掌握</h4>
+                        <ul>
+                            <li class="highlight">✅ 安全三大原则</li>
+                            <li class="highlight">✅ Git 黄金法则</li>
+                            <li class="highlight">✅ 团队规范最佳实践</li>
+                            <li class="highlight">✅ 省钱公式</li>
+                            <li class="highlight">✅ 四大自动化基石</li>
+                            <li class="highlight">✅ TDD 红-绿-重构</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>恭喜完成！</h4>
+                        <p style="color: #e9d5ff;">你已掌握 Claude Code 从入门到实践的全部核心技能</p>
+                        <p style="margin-top: 15px;"><a href="index.html" style="color: #a78bfa;">← 返回首页</a></p>
+                    </div>
+                </div>
+                <p class="magic" style="margin-top: 30px;">
+                    <i class="fas fa-trophy"></i> 完成全部 L1-L4 学习！
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: "slide",
+            width: 1200,
+            height: 700,
+            margin: 0.1
+        });
+    </script>
+</body>
+
+</html>

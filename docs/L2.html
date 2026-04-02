@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2 - 熟练运用 | Claude Code 中文教程</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body { font-family: "Microsoft YaHei", system-ui; }
+        .reveal h1, .reveal h2, .reveal h3 { color: #a78bfa; }
+        .reveal h1 { font-size: 2.5em; }
+        .reveal h2 { font-size: 1.5em; border-bottom: 2px solid #a78bfa; padding-bottom: 8px; }
+        .magic { color: #c4b5fd; font-size: 1em; }
+        .chapter-tag {
+            display: inline-block;
+            background: #a78bfa;
+            color: #1e1b4b;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .topic-card {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid #a78bfa;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: left;
+            border-radius: 0 8px 8px 0;
+        }
+        .topic-card h4 {
+            color: #c4b5fd;
+            margin: 0 0 8px 0;
+            font-size: 1em;
+        }
+        .topic-card ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #e9d5ff;
+            font-size: 0.85em;
+        }
+        .nav-home {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+        }
+        .nav-home a {
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 0.8em;
+            padding: 6px 12px;
+            border: 1px solid #a78bfa;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        .nav-home a:hover { background: #a78bfa; color: #1e1b4b !important; }
+        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: left; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
+        code { background: rgba(139, 92, 246, 0.2); padding: 2px 6px; border-radius: 4px; color: #c4b5fd; font-size: 0.85em; }
+        .highlight { color: #4ade80; }
+        .warning { color: #fbbf24; }
+        small { color: #94a3b8; font-size: 0.7em; }
+    </style>
+</head>
+
+<body>
+    <div class="nav-home">
+        <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- L2 封面 -->
+            <section>
+                <span class="chapter-tag"><i class="fas fa-bolt"></i> L2 熟练运用</span>
+                <h1>效率飞跃</h1>
+                <p class="magic">任务分解 · CLAUDE.md · 上下文 · 权限 · Hooks · Subagent</p>
+                <br>
+                <p style="color: #94a3b8; font-size: 0.9em;">9 个主题 · 掌握高效协作核心技能</p>
+            </section>
+
+            <!-- 01 任务分解 -->
+            <section>
+                <span class="chapter-tag">01</span>
+                <h2>任务分解</h2>
+                <div class="three-col">
+                    <div class="topic-card">
+                        <h4>四大拆解方法</h4>
+                        <ul>
+                            <li><strong>功能模块</strong>（横向）</li>
+                            <li><strong>执行步骤</strong>（纵向）</li>
+                            <li><strong>层次复杂度</strong>（从粗到细）</li>
+                            <li><strong>角色关注点</strong>（专业化）</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Plan Mode</h4>
+                        <ul>
+                            <li>自动生成结构化计划</li>
+                            <li>任务拆解 + 依赖关系</li>
+                            <li>验收标准明确</li>
+                            <li>确认后再执行</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>黄金法则</h4>
+                        <p style="color: #4ade80; font-size: 1.1em;">一次只让 AI 做一件事</p>
+                        <small>六步：澄清 → 规划 → 确认 → 分步 → 验证 → 集成</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 02 CLAUDE.md -->
+            <section>
+                <span class="chapter-tag">02</span>
+                <h2>CLAUDE.md 项目永久记忆</h2>
+                <div class="two-col">
+                    <div>
+                        <h4 style="color: #c4b5fd;">核心作用</h4>
+                        <ul>
+                            <li><strong>永久记忆</strong> — 跨会话保存项目信息</li>
+                            <li><strong>统一标准</strong> — 团队协作风格一致</li>
+                            <li><strong>减少重复</strong> — 不用每次解释技术栈</li>
+                            <li><strong>精准控制</strong> — 强制 AI 遵守规则</li>
+                        </ul>
+                        <h4 style="color: #c4b5fd; margin-top: 15px;">最佳行数</h4>
+                        <p><code>200-300 行</code>，精简核心</p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>标准结构</h4>
+                        <ul>
+                            <li>技术栈与目录规范</li>
+                            <li>编码规范（强制约束）</li>
+                            <li>常用命令</li>
+                            <li>关键决策（历史沉淀）</li>
+                            <li>项目坑点（避坑指南）</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03 上下文管理 -->
+            <section>
+                <span class="chapter-tag">03</span>
+                <h2>上下文管理</h2>
+                <div class="three-col">
+                    <div class="topic-card">
+                        <h4><code>/clear</code></h4>
+                        <p style="color: #e9d5ff; font-size: 0.9em;">彻底重置，清空污染</p>
+                        <small>任务切换的"重启键"</small>
+                    </div>
+                    <div class="topic-card">
+                        <h4><code>/compact</code></h4>
+                        <p style="color: #e9d5ff; font-size: 0.9em;">智能压缩，保留精华</p>
+                        <small>压缩率 60-70%，定向保留</small>
+                    </div>
+                    <div class="topic-card">
+                        <h4><code>/context</code></h4>
+                        <p style="color: #e9d5ff; font-size: 0.9em;">监控状态，心中有数</p>
+                        <small>查看 token 占用、文件列表</small>
+                    </div>
+                </div>
+                <p class="magic" style="margin-top: 15px;">
+                    <strong>五字诀：</strong>清 / 缩 / 存 / 精 / 查
+                </p>
+            </section>
+
+            <!-- 04 权限管理 -->
+            <section>
+                <span class="chapter-tag">04</span>
+                <h2>权限管理</h2>
+                <div class="two-col">
+                    <div>
+                        <h4 style="color: #c4b5fd;">5 种权限模式</h4>
+                        <ul>
+                            <li><code>default</code> — 新手推荐，读自动，写/执行确认</li>
+                            <li><code>acceptEdits</code> — 主力模式，日常首选</li>
+                            <li><code>plan</code> — 仅允许读/搜索/分析</li>
+                            <li><code>auto</code> — 内置安全分类器</li>
+                            <li><code>dontAsk</code> — 全部自动通过（危险）</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #c4b5fd;">三层配置</h4>
+                        <ul>
+                            <li><strong>User</strong> — <code>~/.claude/settings.json</code></li>
+                            <li><strong>Project</strong> — <code>.claude/settings.json</code></li>
+                            <li><strong>Local</strong> — <code>.claude/settings.local.json</code></li>
+                        </ul>
+                        <p class="highlight" style="margin-top: 10px;">deny > ask > allow</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 05 Hooks -->
+            <section>
+                <span class="chapter-tag">05</span>
+                <h2>Hooks 机制</h2>
+                <div class="two-col">
+                    <div>
+                        <h4 style="color: #c4b5fd;">8 大核心事件</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li><code>PreToolUse</code> — 工具执行前</li>
+                            <li><code>PostToolUse</code> — 工具执行后</li>
+                            <li><code>UserPromptSubmit</code> — 消息发送前</li>
+                            <li><code>SessionStart</code> — 会话启动</li>
+                            <li><code>Stop</code> — 会话结束</li>
+                            <li><code>PreCompact</code> — 压缩前</li>
+                            <li><code>Notification</code> — 通知时</li>
+                            <li><code>SubagentStop</code> — 子代理结束</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>核心价值</h4>
+                        <ul>
+                            <li class="highlight">✅ 安全锁</li>
+                            <li class="highlight">✅ 规范强制</li>
+                            <li class="highlight">✅ 流程自动化</li>
+                            <li class="highlight">✅ 审计追踪</li>
+                        </ul>
+                        <p style="margin-top: 10px;">
+                            <small>三层：本地 > 项目 > 全局</small>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 06 Subagent -->
+            <section>
+                <span class="chapter-tag">06</span>
+                <h2>Subagent 子代理</h2>
+                <div class="two-col">
+                    <div>
+                        <h4 style="color: #c4b5fd;">核心概念</h4>
+                        <p style="color: #e9d5ff; text-align: left;">
+                            独立的专用 AI 助手，拥有独立上下文、自定义系统提示词、细粒度工具权限
+                        </p>
+                        <h4 style="color: #c4b5fd; margin-top: 15px;">两种创建方式</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li><code>/agents</code> — 交互式（推荐）</li>
+                            <li>Markdown 配置 — 手动创建</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>适用场景</h4>
+                        <ul>
+                            <li>代码审查/质量把控</li>
+                            <li>问题调试/故障定位</li>
+                            <li>文档生成/维护</li>
+                            <li>项目结构探索/分析</li>
+                            <li>测试用例编写</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 07 Agent Teams -->
+            <section>
+                <span class="chapter-tag">07</span>
+                <h2>Agent Teams 多智能体协作</h2>
+                <div class="two-col">
+                    <div>
+                        <h4 style="color: #c4b5fd;">与 Subagent 区别</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Subagent = <strong>主仆分工</strong></li>
+                            <li>Agent Teams = <strong>平级团队协作</strong></li>
+                            <li>完全独立实例，上下文隔离</li>
+                            <li>队友间直接点对点通信</li>
+                        </ul>
+                        <h4 style="color: #c4b5fd; margin-top: 15px;">重要限制</h4>
+                        <p class="warning">仅支持 Claude 3（Opus/Sonnet/Haiku）<br>不支持国产模型</p>
+                    </div>
+                    <div class="topic-card">
+                        <h4>启用条件</h4>
+                        <ul>
+                            <li>Claude Code v2.1.32+</li>
+                            <li>Pro / Max 订阅</li>
+                            <li>手动启用：<br>
+                                <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</code>
+                            </li>
+                        </ul>
+                        <p style="margin-top: 10px;">
+                            <small>适用：大型项目并行开发、多角度审查</small>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 08 Computer Use -->
+            <section>
+                <span class="chapter-tag">08</span>
+                <h2>Computer Use</h2>
+                <div class="two-col">
+                    <div>
+                        <h4 style="color: #c4b5fd;">核心能力</h4>
+                        <p style="color: #e9d5ff; text-align: left; font-size: 0.9em;">
+                            让 AI <strong>"看见"屏幕、操控鼠标与键盘</strong>，突破终端文本交互
+                        </p>
+                        <ul style="font-size: 0.9em;">
+                            <li><strong>视觉</strong> — 截屏、分析界面</li>
+                            <li><strong>控制</strong> — 点击、输入、滚动</li>
+                            <li><strong>系统</strong> — 启动应用、文件管理</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>支持条件</h4>
+                        <ul>
+                            <li class="warning">仅 macOS</li>
+                            <li>Claude Code v2.1.85+</li>
+                            <li>Pro / Max 订阅</li>
+                            <li>辅助功能 + 屏幕录制权限</li>
+                        </ul>
+                        <p style="margin-top: 10px;">
+                            <small>安全配置：最小权限、手动确认、全量审计</small>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 09 微信连接 -->
+            <section>
+                <span class="chapter-tag">09</span>
+                <h2>微信连接</h2>
+                <div class="three-col">
+                    <div class="topic-card">
+                        <h4>MCP 通道</h4>
+                        <p style="color: #e9d5ff; font-size: 0.85em;">claude-code-wechat-channel</p>
+                        <small>最稳定，推荐方案</small>
+                    </div>
+                    <div class="topic-card">
+                        <h4>cc-connect</h4>
+                        <p style="color: #e9d5ff; font-size: 0.85em;">极简新手友好</p>
+                        <small>1 行安装，快速上手</small>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Skill</h4>
+                        <p style="color: #e9d5ff; font-size: 0.85em;">wechat-claude-code</p>
+                        <small>功能最全</small>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; color: #94a3b8;">
+                    全部基于微信官方 ClawBot iLink 协议，合规安全
+                </p>
+            </section>
+
+            <!-- L2 总结 -->
+            <section>
+                <h2>L2 总结</h2>
+                <div class="two-col">
+                    <div class="topic-card">
+                        <h4>已掌握</h4>
+                        <ul>
+                            <li class="highlight">✅ 任务分解与 Plan Mode</li>
+                            <li class="highlight">✅ CLAUDE.md 项目记忆</li>
+                            <li class="highlight">✅ 上下文管理（清/缩/存/精/查）</li>
+                            <li class="highlight">✅ 5 种权限模式</li>
+                            <li class="highlight">✅ Hooks 事件驱动</li>
+                            <li class="highlight">✅ Subagent 专业化分工</li>
+                            <li class="highlight">✅ Agent Teams 协作</li>
+                            <li class="highlight">✅ Computer Use</li>
+                            <li class="highlight">✅ 微信连接</li>
+                        </ul>
+                    </div>
+                    <div class="topic-card">
+                        <h4>下一步</h4>
+                        <ul>
+                            <li>进入 <a href="L3.html" style="color: #a78bfa;">L3 技术视角</a></li>
+                            <li>深入 Agent 架构原理</li>
+                            <li>理解 Tools 系统机制</li>
+                            <li>掌握 MCP/记忆/权限源码</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">
+                    <a href="L3.html" style="color: #a78bfa; font-size: 1.1em;">
+                        继续学习 L3 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: "slide",
+            width: 1200,
+            height: 700,
+            margin: 0.08
+        });
+    </script>
+</body>
+
+</html>
