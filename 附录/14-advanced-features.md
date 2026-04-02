@@ -303,6 +303,4 @@ claude
 
 ## 下一步
 
-- 深入 Hooks：[Hooks 进阶](../L4-精通技巧/14-hooks-advanced.md)
 - 查看 CLI 参考：[附录 CLI](13-advanced-cli.md)
-- 了解 MCP：[MCP 协议](../L4-精通技巧/07-mcp.md)

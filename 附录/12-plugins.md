@@ -253,8 +253,3 @@ Claude Code 官方提供的插件，稳定可靠。
 
 ---
 
-## 下一步
-
-- 查看更多高级功能：[Advanced Features](14-advanced-features.md)
-- 了解 Hooks 进阶用法：[Hooks 进阶](../L4-精通技巧/14-hooks-advanced.md)
-- 配置 MCP：[MCP 协议](../L4-精通技巧/07-mcp.md)

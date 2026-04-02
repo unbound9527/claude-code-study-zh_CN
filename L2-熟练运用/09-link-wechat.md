@@ -23,9 +23,9 @@
 
 ---
 
-## 三、方案1：官方 MCP 通道（最稳定，非Claude模型不可用）
+## 三、方案1：MCP 通道（最稳定，非Claude模型不可用）
 ### 工具：claude-code-wechat-channel（GitHub 200+星，作者 Johnixr）
-**来源**：微信官方 iLink 协议、Anthropic MCP 规范
+**来源**：iLink 协议、Anthropic MCP 规范
 
 ### 步骤1：扫码绑定微信
 ```bash

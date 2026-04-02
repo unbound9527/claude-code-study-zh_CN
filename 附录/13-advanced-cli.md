@@ -268,5 +268,3 @@ Claude Code 配置文件位置：
 ## 下一步
 
 - 了解高级功能：[Advanced Features](14-advanced-features.md)
-- 配置 Hooks：[Hooks 系统](../L4-精通技巧/08-hooks.md)
-- 权限管理：[权限配置](../L4-精通技巧/11-permissions.md)
