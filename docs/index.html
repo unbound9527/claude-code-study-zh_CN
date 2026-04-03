@@ -14,58 +14,40 @@
         body { font-family: "Microsoft YaHei", system-ui; }
         .reveal { height: 100vh; }
         .reveal .slides { text-align: center; }
-        .reveal h1 { color: #a78bfa; font-size: 2em; }
-        .reveal p { font-size: 0.8em; }
-        .subtitle { color: #c4b5fd; font-size: 1.2em; }
-        .chapters {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            max-width: 800px;
-            margin: 30px auto;
-        }
-        .chapter-card {
-            background: rgba(139, 92, 246, 0.15);
-            border: 2px solid #a78bfa;
-            border-radius: 16px;
-            padding: 25px;
+        .reveal h1 { color: #a78bfa; font-size: 1.6em; }
+        .reveal h2 { color: #a78bfa; font-size: 1em; border-bottom: 1px solid #a78bfa; padding-bottom: 4px; margin-bottom: 8px; }
+        .reveal h3 { color: #c4b5fd; font-size: 0.85em; }
+        .reveal p, .reveal li { font-size: 0.55em; }
+        .subtitle { color: #c4b5fd; font-size: 1em; margin-bottom: 15px; }
+        .chapters { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 900px; margin: 0 auto; }
+        .chapter {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 10px;
+            padding: 12px;
             text-align: left;
-            transition: all 0.3s;
-            cursor: pointer;
         }
-        .chapter-card:hover {
-            background: rgba(139, 92, 246, 0.25);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+        .chapter h2 {
+            margin: 0 0 6px 0;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .chapter-card h2 {
-            color: #a78bfa;
-            margin: 0 0 8px 0;
-            font-size: 1.3em;
-        }
-        .chapter-card .desc {
-            color: #e9d5ff;
-            margin: 0;
-            font-size: 0.85em;
-        }
-        .chapter-card .count {
-            color: #94a3b8;
-            font-size: 0.75em;
-            margin-top: 8px;
-        }
-        .chapter-card a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
+        .chapter h2 i { font-size: 0.9em; }
+        .chapter ul { margin: 0; padding-left: 14px; color: #e9d5ff; }
+        .chapter li { margin: 2px 0; }
+        .chapter .count { color: #64748b; font-size: 0.5em; }
         .footer {
             position: fixed;
-            bottom: 20px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             color: #64748b;
-            font-size: 0.7em;
+            font-size: 0.55em;
         }
+        .green { color: #4ade80; }
+        .yellow { color: #fbbf24; }
     </style>
 </head>
 
@@ -79,37 +61,68 @@
                 <p class="subtitle">从零到高手 · 系统学习路径</p>
 
                 <div class="chapters">
-                    <div class="chapter-card">
-                        <a href="L1.html">
-                            <h2><i class="fas fa-rocket"></i> L1 掌握用法</h2>
-                            <p class="desc">安装 · 表达 · 工具 · Git · Skills · MCP</p>
-                            <p class="count">6 章节</p>
-                        </a>
+
+                    <div class="chapter">
+                        <h2><i class="fas fa-rocket"></i> L1 掌握用法 <span class="count">6章节</span></h2>
+                        <ul>
+                            <li>安装配置 · 代理 · 国产模型</li>
+                            <li>清晰表达需求（五要素）</li>
+                            <li>工具使用（文件/命令/集成）</li>
+                            <li>Git 协作规范</li>
+                            <li>Skills 技能系统</li>
+                            <li>MCP 扩展机制</li>
+                        </ul>
                     </div>
-                    <div class="chapter-card">
-                        <a href="L2.html">
-                            <h2><i class="fas fa-bolt"></i> L2 熟练运用</h2>
-                            <p class="desc">任务分解 · CLAUDE.md · 上下文 · 权限</p>
-                            <p class="count">9 章节</p>
-                        </a>
+
+                    <div class="chapter">
+                        <h2><i class="fas fa-bolt"></i> L2 熟练运用 <span class="count">9章节</span></h2>
+                        <ul>
+                            <li>任务分解 · Plan Mode</li>
+                            <li>CLAUDE.md 项目永久记忆</li>
+                            <li>上下文管理（清/缩/存/精/查）</li>
+                            <li>权限管理（5模式 + 三层）</li>
+                            <li>Hooks 事件驱动</li>
+                            <li>Subagent 子代理</li>
+                            <li class="yellow">Agent Teams（仅Claude 3）</li>
+                            <li>Computer Use（仅macOS）</li>
+                            <li>微信连接</li>
+                        </ul>
                     </div>
-                    <div class="chapter-card">
-                        <a href="L3.html">
-                            <h2><i class="fas fa-code"></i> L3 技术视角</h2>
-                            <p class="desc">架构 · Tools · Subagent · MCP · 记忆</p>
-                            <p class="count">13 章节</p>
-                        </a>
+
+                    <div class="chapter">
+                        <h2><i class="fas fa-code"></i> L3 技术视角 <span class="count">13章节</span></h2>
+                        <ul>
+                            <li>Agent 架构（QueryEngine/query/Task）</li>
+                            <li>Tools 系统（三层加载）</li>
+                            <li>Subagent 机制（递归防护）</li>
+                            <li>Harness 工程分类</li>
+                            <li>记忆系统（AutoMemory/Compact）</li>
+                            <li>MCP 扩展机制</li>
+                            <li>多模型支持（Provider）</li>
+                            <li>权限系统（三元决策）</li>
+                            <li>省 Token 设计</li>
+                            <li>提示词预处理</li>
+                            <li>KAIROS 持久助手</li>
+                            <li class="yellow">ANT 特权（内部员工）</li>
+                            <li>AI Agent 面试指南</li>
+                        </ul>
                     </div>
-                    <div class="chapter-card">
-                        <a href="L4.html">
-                            <h2><i class="fas fa-shield-halved"></i> L4 实践经验</h2>
-                            <p class="desc">安全 · Git · 团队 · 省钱 · 工作流 · TDD</p>
-                            <p class="count">6 章节</p>
-                        </a>
+
+                    <div class="chapter">
+                        <h2><i class="fas fa-shield-halved"></i> L4 实践经验 <span class="count">6章节</span></h2>
+                        <ul>
+                            <li><span class="green">安全</span> · 最小权限 + 沙箱 + 审计</li>
+                            <li><span class="green">Git</span> · 分支 + 原子提交 + PR</li>
+                            <li><span class="green">团队</span> · Explore-Plan-Code-Commit</li>
+                            <li><span class="green">省钱</span> · CLAUDE.md + 过滤 + 模型分层</li>
+                            <li><span class="green">工作流</span> · Hooks/Skills/MCP/Commands</li>
+                            <li><span class="green">TDD</span> · 红-绿-重构 + 质量门禁</li>
+                        </ul>
                     </div>
+
                 </div>
 
-                <p class="footer">共 34 章节 · 点击卡片开始学习</p>
+                <p class="footer">共 34 章节 · 翻页查看详情或点击顶部链接进入章节</p>
             </section>
 
         </div>
@@ -122,7 +135,7 @@
             transition: "slide",
             width: "100%",
             height: "100%",
-            margin: 0.1
+            margin: 0.08
         });
     </script>
 </body>
