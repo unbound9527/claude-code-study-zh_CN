@@ -14,279 +14,272 @@
         body { font-family: "Microsoft YaHei", system-ui; }
         .reveal { height: 100vh; }
         .reveal .slides { text-align: center; }
-        .reveal h1, .reveal h2, .reveal h3 { color: #a78bfa; }
-        .reveal h1 { font-size: 1.8em; }
-        .reveal h2 { font-size: 1.3em; border-bottom: 2px solid #a78bfa; padding-bottom: 8px; }
+        .reveal h1, .reveal h2 { color: #a78bfa; }
+        .reveal h1 { font-size: 1.6em; }
+        .reveal h2 { font-size: 1.2em; }
         .reveal p, .reveal li { font-size: 0.7em; }
-        .magic { color: #c4b5fd; font-size: 0.9em; }
-        .chapter-tag {
+        .reveal section { padding: 10px; }
+        .tag {
             display: inline-block;
             background: #a78bfa;
             color: #1e1b4b;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.65em;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
-        .topic-card {
+        .topic {
             background: rgba(139, 92, 246, 0.1);
             border-left: 3px solid #a78bfa;
-            padding: 12px 15px;
-            margin: 10px 0;
+            padding: 10px 15px;
+            margin: 10px auto;
             text-align: left;
             border-radius: 0 8px 8px 0;
+            max-width: 700px;
         }
-        .topic-card h4 {
+        .topic h4 {
             color: #c4b5fd;
             margin: 0 0 8px 0;
             font-size: 1em;
         }
-        .topic-card ul {
+        .topic ul {
             margin: 0;
             padding-left: 18px;
             color: #e9d5ff;
         }
-        .topic-card p { margin: 5px 0; }
-        .nav-home {
+        .topic li { margin: 4px 0; }
+        .nav {
             position: fixed;
-            top: 10px;
-            right: 10px;
+            top: 8px;
+            right: 8px;
             z-index: 100;
+            display: flex;
+            gap: 8px;
         }
-        .nav-home a {
+        .nav a {
             color: #a78bfa;
             text-decoration: none;
-            font-size: 0.7em;
-            padding: 5px 10px;
+            font-size: 0.65em;
+            padding: 4px 8px;
             border: 1px solid #a78bfa;
+            border-radius: 10px;
+        }
+        .nav a:hover { background: #a78bfa; color: #1e1b4b; }
+        .doc-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 15px;
+            background: rgba(139, 92, 246, 0.3);
+            border: 1px solid #a78bfa;
+            color: #e9d5ff !important;
+            text-decoration: none;
             border-radius: 15px;
+            font-size: 0.7em;
             transition: all 0.3s;
         }
-        .nav-home a:hover { background: #a78bfa; color: #1e1b4b !important; }
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
+        .doc-link:hover { background: #a78bfa; color: #1e1b4b !important; }
         code { background: rgba(139, 92, 246, 0.2); padding: 1px 5px; border-radius: 3px; color: #c4b5fd; }
-        .highlight { color: #4ade80; font-weight: bold; }
-        .warning { color: #fbbf24; }
+        .green { color: #4ade80; }
+        .yellow { color: #fbbf24; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 650px; margin: 0 auto; }
     </style>
 </head>
 
 <body>
-    <div class="nav-home">
-        <a href="index.html"><i class="fas fa-home"></i> 返回首页</a>
+    <div class="nav">
+        <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+        <a href="../L1-掌握用法/01-install.md" target="_blank"><i class="fas fa-file-alt"></i> 文档</a>
     </div>
 
     <div class="reveal">
         <div class="slides">
 
-            <!-- L1 封面 -->
+            <!-- 封面 -->
             <section>
-                <span class="chapter-tag"><i class="fas fa-rocket"></i> L1 掌握用法</span>
+                <span class="tag"><i class="fas fa-rocket"></i> L1 掌握用法</span>
                 <h1>快速上手</h1>
-                <p class="magic">安装 · 表达 · 工具 · Git · Skills · MCP</p>
-                <br>
-                <p style="color: #94a3b8;">6 个主题 · 从零开始掌握 Claude Code 核心用法</p>
+                <p style="color: #c4b5fd;">安装 · 表达 · 工具 · Git · Skills · MCP</p>
+                <p style="color: #64748b; font-size: 0.6em;">6 个主题</p>
+                <a href="../L1-掌握用法/01-install.md" class="doc-link" target="_blank">
+                    <i class="fas fa-book"></i> 查看完整文档
+                </a>
             </section>
 
             <!-- 01 安装配置 -->
             <section>
-                <span class="chapter-tag">01</span>
-                <h2>安装配置与国产大模型切换</h2>
-                <div class="two-col">
-                    <div>
-                        <h4 style="color: #c4b5fd;">国内使用三步</h4>
-                        <ol style="font-size: 0.9em;">
-                            <li><strong>安装</strong> — CLI / VSCode 插件</li>
-                            <li><strong>代理</strong> — HTTP_PROXY 配置</li>
-                            <li><strong>换模型</strong> — 智谱 GLM / 通义千问 / DeepSeek</li>
-                        </ol>
-                    </div>
-                    <div class="topic-card">
-                        <h4><i class="fas fa-key"></i> 智谱 GLM 配置</h4>
-                        <code>ANTHROPIC_AUTH_TOKEN</code> 你的智谱API Key<br>
-                        <code>ANTHROPIC_BASE_URL</code> https://open.bigmodel.cn/api/anthropic<br>
-                        <code>ANTHROPIC_DEFAULT_SONNET_MODEL</code> glm-4.7
-                    </div>
+                <span class="tag">01</span>
+                <h2>安装配置与国产大模型</h2>
+                <div class="topic">
+                    <h4>国内使用三步</h4>
+                    <ul>
+                        <li><strong>安装</strong> — CLI / VSCode 插件</li>
+                        <li><strong>代理</strong> — HTTP_PROXY 配置</li>
+                        <li><strong>换模型</strong> — 智谱 GLM / 通义千问 / DeepSeek</li>
+                    </ul>
                 </div>
+                <div class="topic">
+                    <h4>配置示例（智谱 GLM）</h4>
+                    <p style="color: #e9d5ff; font-size: 0.9em;">
+                        <code>ANTHROPIC_AUTH_TOKEN</code> 你的API Key<br>
+                        <code>ANTHROPIC_BASE_URL</code> open.bigmodel.cn/api/anthropic
+                    </p>
+                </div>
+                <a href="../L1-掌握用法/01-install.md" class="doc-link" target="_blank">📖 01-install.md</a>
             </section>
 
             <!-- 02 清晰表达 -->
             <section>
-                <span class="chapter-tag">02</span>
+                <span class="tag">02</span>
                 <h2>清晰表达需求</h2>
-                <div class="two-col">
-                    <div class="topic-card">
-                        <h4>需求五要素</h4>
-                        <ul>
-                            <li><strong>背景</strong> — 项目、技术栈、架构</li>
-                            <li><strong>任务</strong> — 明确动作+对象+范围</li>
-                            <li><strong>功能细节</strong> — 输入+输出+流程</li>
-                            <li><strong>约束</strong> — 必须/禁止/边界</li>
-                            <li><strong>验收</strong> — 如何算完成</li>
-                        </ul>
-                    </div>
-                    <div class="topic-card">
-                        <h4>五大误区</h4>
-                        <ul>
-                            <li class="warning">❌ 需求模糊，信息缺失</li>
-                            <li class="warning">❌ 一次多任务</li>
-                            <li class="warning">❌ 不写约束，放任自由</li>
-                            <li class="warning">❌ 否定句低效</li>
-                            <li class="warning">❌ 不验证，生成即结束</li>
-                        </ul>
-                    </div>
+                <div class="topic">
+                    <h4>需求五要素</h4>
+                    <ul>
+                        <li><strong>背景</strong> — 项目、技术栈、架构</li>
+                        <li><strong>任务</strong> — 明确动作+对象+范围</li>
+                        <li><strong>功能细节</strong> — 输入+输出+流程</li>
+                        <li><strong>约束</strong> — 必须/禁止/边界</li>
+                        <li><strong>验收</strong> — 如何算完成</li>
+                    </ul>
                 </div>
-                <p class="magic" style="margin-top: 20px;">
-                    <strong>公式：</strong>清晰需求 = 背景 + 任务 + 功能 + 约束 + 验收
-                </p>
+                <div class="topic">
+                    <h4>五大误区</h4>
+                    <ul>
+                        <li class="yellow">❌ 需求模糊，信息缺失</li>
+                        <li class="yellow">❌ 一次多任务</li>
+                        <li class="yellow">❌ 不写约束</li>
+                    </ul>
+                </div>
+                <a href="../L1-掌握用法/02-prompt.md" class="doc-link" target="_blank">📖 02-prompt.md</a>
             </section>
 
             <!-- 03 工具使用 -->
             <section>
-                <span class="chapter-tag">03</span>
+                <span class="tag">03</span>
                 <h2>工具使用</h2>
-                <div class="two-col">
-                    <div>
-                        <h4 style="color: #c4b5fd;">三大核心能力</h4>
+                <div class="grid-2">
+                    <div class="topic">
+                        <h4>三大核心能力</h4>
                         <ul>
-                            <li><i class="fas fa-file"></i> <strong>文件系统</strong> — 读取、编辑、创建、删除</li>
-                            <li><i class="fas fa-terminal"></i> <strong>命令执行</strong> — 运行测试、构建项目</li>
-                            <li><i class="fas fa-plug"></i> <strong>外部集成</strong> — MCP 连接数据库/API</li>
+                            <li><i class="fas fa-file"></i> <strong>文件系统</strong></li>
+                            <li><i class="fas fa-terminal"></i> <strong>命令执行</strong></li>
+                            <li><i class="fas fa-plug"></i> <strong>外部集成</strong></li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 style="color: #c4b5fd;">内置命令</h4>
+                    <div class="topic">
+                        <h4>内置命令</h4>
                         <ul>
-                            <li><code>/clear</code> — 清空上下文</li>
-                            <li><code>/compact</code> — 智能压缩</li>
-                            <li><code>/context</code> — 查看状态</li>
-                            <li><code>/diff</code> — 查看变更</li>
-                            <li><code>/plan</code> — 仅规划</li>
+                            <li><code>/clear</code> 清空上下文</li>
+                            <li><code>/compact</code> 智能压缩</li>
+                            <li><code>/context</code> 查看状态</li>
                         </ul>
                     </div>
                 </div>
-                <p class="magic" style="margin-top: 20px;">
-                    <i class="fas fa-lightbulb"></i> 核心价值：让 AI 从"建议者"变为能落地执行的"开发队友"
-                </p>
+                <a href="../L1-掌握用法/03-tools.md" class="doc-link" target="_blank">📖 03-tools.md</a>
             </section>
 
             <!-- 04 Git协作 -->
             <section>
-                <span class="chapter-tag">04</span>
+                <span class="tag">04</span>
                 <h2>Git 协作</h2>
-                <div class="topic-card">
+                <div class="topic">
                     <h4>核心口诀</h4>
-                    <p style="color: #4ade80; font-size: 1.2em;">
+                    <p class="green" style="font-size: 1em;">
                         <strong>分支隔离不碰主，原子提交留痕迹，规范提交好回溯，安全协作不踩坑</strong>
                     </p>
                 </div>
-                <div class="two-col" style="margin-top: 20px;">
-                    <div>
-                        <h4 style="color: #c4b5fd;">分支规范</h4>
-                        <ul style="font-size: 0.9em;">
-                            <li><code>feat/ai-collab-功能名</code> — 新功能分支</li>
-                            <li><code>bugfix/问题模块-描述</code> — 修复分支</li>
-                            <li>禁止直接操作 main 分支</li>
+                <div class="grid-2">
+                    <div class="topic">
+                        <h4>分支规范</h4>
+                        <ul>
+                            <li><code>feat/ai-collab-xxx</code></li>
+                            <li><code>bugfix/xxx</code></li>
+                            <li>禁止直接操作 main</li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 style="color: #c4b5fd;">提交规范</h4>
-                        <ul style="font-size: 0.9em;">
-                            <li>遵循 Conventional Commits</li>
+                    <div class="topic">
+                        <h4>提交规范</h4>
+                        <ul>
+                            <li>Conventional Commits</li>
                             <li>必须标注 <code>(via Claude Code)</code></li>
-                            <li>原子提交（一个提交只做一件事）</li>
                         </ul>
                     </div>
                 </div>
+                <a href="../L1-掌握用法/04-git.md" class="doc-link" target="_blank">📖 04-git.md</a>
             </section>
 
             <!-- 05 Skills -->
             <section>
-                <span class="chapter-tag">05</span>
+                <span class="tag">05</span>
                 <h2>Skills 技能系统</h2>
-                <div class="two-col">
-                    <div>
-                        <h4 style="color: #c4b5fd;">什么是 Skill？</h4>
-                        <p style="text-align: left; color: #e9d5ff;">
-                            <strong>Skill = 标准化工作流 + 可复用提示词 + 自动触发规则</strong>
-                        </p>
-                        <ul style="font-size: 0.9em;">
-                            <li>SKILL.md 是核心载体</li>
-                            <li>两种触发：手动 <code>/命令</code> + 自然语言</li>
-                            <li>全模型支持，客户端本地功能</li>
+                <div class="topic">
+                    <h4>什么是 Skill？</h4>
+                    <p style="color: #e9d5ff;">
+                        <strong>Skill = 标准化工作流 + 可复用提示词 + 自动触发规则</strong>
+                    </p>
+                </div>
+                <div class="grid-2">
+                    <div class="topic">
+                        <h4>触发方式</h4>
+                        <ul>
+                            <li>手动 <code>/命令</code></li>
+                            <li>自然语言自动匹配</li>
                         </ul>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic">
                         <h4>核心价值</h4>
                         <ul>
-                            <li class="highlight">✅ 告别重复提示</li>
-                            <li class="highlight">✅ 自动专业能力</li>
-                            <li class="highlight">✅ 标准化协作</li>
+                            <li class="green">✅ 告别重复提示</li>
+                            <li class="green">✅ 标准化协作</li>
                         </ul>
                     </div>
                 </div>
+                <a href="../L1-掌握用法/05-skills.md" class="doc-link" target="_blank">📖 05-skills.md</a>
             </section>
 
             <!-- 06 MCP -->
             <section>
-                <span class="chapter-tag">06</span>
+                <span class="tag">06</span>
                 <h2>MCP 扩展机制</h2>
-                <div class="two-col">
-                    <div>
-                        <h4 style="color: #c4b5fd;">通俗理解</h4>
-                        <p style="text-align: left; color: #e9d5ff;">
-                            <i class="fas fa-usb"></i> AI 的<strong>通用 USB 接口</strong><br>
-                            MCP 让 Claude 即插即用连接数百种外部工具
-                        </p>
-                        <h4 style="color: #c4b5fd; margin-top: 20px;">两种传输模式</h4>
-                        <ul style="font-size: 0.9em;">
-                            <li><code>Stdio</code> — 本地进程，低延迟</li>
-                            <li><code>HTTP</code> — 远程服务，跨设备</li>
+                <div class="topic">
+                    <h4><i class="fas fa-usb"></i> AI 的"通用 USB 接口"</h4>
+                    <p style="color: #e9d5ff;">即插即用连接数百种外部工具</p>
+                </div>
+                <div class="grid-2">
+                    <div class="topic">
+                        <h4>传输模式</h4>
+                        <ul>
+                            <li><code>Stdio</code> — 本地进程</li>
+                            <li><code>HTTP</code> — 远程服务</li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 style="color: #c4b5fd;">必装 5 个 MCP</h4>
-                        <ul style="font-size: 0.9em;">
-                            <li><code>fs</code> — 文件系统</li>
-                            <li><code>github</code> — 代码协作</li>
-                            <li><code>postgres</code> — 数据库</li>
-                            <li><code>context7</code> — 最新文档</li>
-                            <li><code>figma</code> — 设计转代码</li>
+                    <div class="topic">
+                        <h4>必装 MCP</h4>
+                        <ul>
+                            <li>fs / github / postgres</li>
+                            <li>context7 / figma</li>
                         </ul>
                     </div>
                 </div>
-                <p class="magic" style="margin-top: 20px;">
-                    全模型支持 · 三大能力：Tools（执行）/ Resources（读取）/ Prompts（流程）
-                </p>
+                <a href="../L1-掌握用法/06-mcp.md" class="doc-link" target="_blank">📖 06-mcp.md</a>
             </section>
 
-            <!-- L1 总结 -->
+            <!-- 总结 -->
             <section>
                 <h2>L1 总结</h2>
-                <div class="two-col">
-                    <div class="topic-card">
-                        <h4>已掌握</h4>
-                        <ul>
-                            <li class="highlight">✅ 安装配置与代理</li>
-                            <li class="highlight">✅ 清晰表达需求</li>
-                            <li class="highlight">✅ 工具使用</li>
-                            <li class="highlight">✅ Git 协作规范</li>
-                            <li class="highlight">✅ Skills 技能系统</li>
-                            <li class="highlight">✅ MCP 扩展机制</li>
-                        </ul>
-                    </div>
-                    <div class="topic-card">
-                        <h4>下一步</h4>
-                        <ul>
-                            <li>进入 <a href="L2.html" style="color: #a78bfa;">L2 熟练运用</a></li>
-                            <li>学习任务分解与规划</li>
-                            <li>掌握 CLAUDE.md 与上下文</li>
-                            <li>深入权限管理与 Hooks</li>
-                        </ul>
-                    </div>
+                <div class="topic" style="max-width: 500px;">
+                    <h4>已掌握</h4>
+                    <ul>
+                        <li class="green">✅ 安装配置</li>
+                        <li class="green">✅ 清晰表达需求</li>
+                        <li class="green">✅ 工具使用</li>
+                        <li class="green">✅ Git 协作</li>
+                        <li class="green">✅ Skills</li>
+                        <li class="green">✅ MCP</li>
+                    </ul>
                 </div>
-                <p style="margin-top: 40px;">
-                    <a href="L2.html" style="color: #a78bfa; font-size: 1.2em;">
+                <p style="margin-top: 20px;">
+                    <a href="L2.html" style="color: #a78bfa; font-size: 0.9em;">
                         继续学习 L2 <i class="fas fa-arrow-right"></i>
                     </a>
                 </p>
@@ -302,9 +295,7 @@
             transition: "slide",
             width: "100%",
             height: "100%",
-            margin: 0.05,
-            minScale: 0.5,
-            maxScale: 1.5
+            margin: 0.05
         });
     </script>
 </body>

@@ -14,308 +14,286 @@
         body { font-family: "Microsoft YaHei", system-ui; }
         .reveal { height: 100vh; }
         .reveal .slides { text-align: center; }
-        .reveal h1, .reveal h2, .reveal h3 { color: #a78bfa; }
-        .reveal h1 { font-size: 1.7em; }
-        .reveal h2 { font-size: 1.25em; border-bottom: 2px solid #a78bfa; padding-bottom: 6px; }
-        .reveal p, .reveal li { font-size: 0.65em; }
-        .magic { color: #c4b5fd; font-size: 0.85em; }
-        .chapter-tag {
+        .reveal h1, .reveal h2 { color: #a78bfa; }
+        .reveal h1 { font-size: 1.6em; }
+        .reveal h2 { font-size: 1.15em; }
+        .reveal p, .reveal li { font-size: 0.68em; }
+        .tag {
             display: inline-block;
             background: #a78bfa;
             color: #1e1b4b;
-            padding: 4px 12px;
-            border-radius: 15px;
+            padding: 3px 10px;
+            border-radius: 12px;
             font-size: 0.65em;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
-        .topic-card {
+        .topic {
             background: rgba(139, 92, 246, 0.1);
             border-left: 3px solid #a78bfa;
             padding: 10px 12px;
-            margin: 8px 0;
+            margin: 8px auto;
             text-align: left;
             border-radius: 0 8px 8px 0;
+            max-width: 650px;
         }
-        .topic-card h4 {
+        .topic h4 {
             color: #c4b5fd;
             margin: 0 0 6px 0;
             font-size: 1em;
         }
-        .topic-card ul {
+        .topic ul {
             margin: 0;
             padding-left: 16px;
             color: #e9d5ff;
         }
-        .topic-card li { margin: 3px 0; }
-        .topic-card p { margin: 4px 0; }
-        .nav-home {
+        .topic li { margin: 3px 0; }
+        .topic p { margin: 4px 0; }
+        .nav {
             position: fixed;
             top: 8px;
             right: 8px;
             z-index: 100;
+            display: flex;
+            gap: 8px;
         }
-        .nav-home a {
+        .nav a {
             color: #a78bfa;
             text-decoration: none;
-            font-size: 0.65em;
+            font-size: 0.6em;
             padding: 4px 8px;
             border: 1px solid #a78bfa;
-            border-radius: 12px;
-            transition: all 0.3s;
+            border-radius: 10px;
         }
-        .nav-home a:hover { background: #a78bfa; color: #1e1b4b !important; }
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left; }
-        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; text-align: left; }
-        code { background: rgba(139, 92, 246, 0.2); padding: 1px 4px; border-radius: 3px; color: #c4b5fd; font-size: 0.85em; }
-        .highlight { color: #4ade80; }
-        .warning { color: #fbbf24; }
-        small { color: #94a3b8; font-size: 0.6em; }
+        .nav a:hover { background: #a78bfa; color: #1e1b4b; }
+        .doc-link {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 5px 12px;
+            background: rgba(139, 92, 246, 0.3);
+            border: 1px solid #a78bfa;
+            color: #e9d5ff !important;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 0.65em;
+        }
+        .doc-link:hover { background: #a78bfa; color: #1e1b4b !important; }
+        code { background: rgba(139, 92, 246, 0.2); padding: 1px 4px; border-radius: 3px; color: #c4b5fd; }
+        .green { color: #4ade80; }
+        .yellow { color: #fbbf24; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 600px; margin: 0 auto; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; max-width: 600px; margin: 0 auto; }
     </style>
 </head>
 
 <body>
-    <div class="nav-home">
+    <div class="nav">
         <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+        <a href="../L4-实践经验/00-security.md" target="_blank"><i class="fas fa-file-alt"></i> 文档</a>
     </div>
 
     <div class="reveal">
         <div class="slides">
 
-            <!-- L4 封面 -->
+            <!-- 封面 -->
             <section>
-                <span class="chapter-tag"><i class="fas fa-shield-halved"></i> L4 实践经验</span>
+                <span class="tag"><i class="fas fa-shield-halved"></i> L4 实践经验</span>
                 <h1>工程化落地</h1>
-                <p class="magic">安全 · Git规范 · 团队规范 · 省钱 · 工作流 · TDD</p>
-                <br>
-                <p style="color: #94a3b8;">6 个主题 · 将 Claude Code 融入真实工程实践</p>
+                <p style="color: #c4b5fd;">安全 · Git · 团队 · 省钱 · 工作流 · TDD</p>
+                <p style="color: #64748b; font-size: 0.6em;">6 个主题</p>
             </section>
 
             <!-- 安全 -->
             <section>
-                <span class="chapter-tag">安全</span>
+                <span class="tag">安全</span>
                 <h2>安全最佳实践</h2>
-                <div class="three-col">
-                    <div class="topic-card">
+                <div class="grid-3">
+                    <div class="topic">
                         <h4>三大原则</h4>
                         <ul>
-                            <li class="highlight">✅ 最小权限</li>
-                            <li class="highlight">✅ 沙箱强制启用</li>
-                            <li class="highlight">✅ 分层权限体系</li>
+                            <li class="green">✅ 最小权限</li>
+                            <li class="green">✅ 沙箱强制</li>
+                            <li class="green">✅ 分层权限</li>
                         </ul>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic">
                         <h4>文件保护</h4>
                         <ul>
                             <li>.claudeignore</li>
-                            <li>denyPaths 双重隔离</li>
-                            <li>禁止硬编码密钥</li>
+                            <li>denyPaths</li>
                         </ul>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic">
                         <h4>沙箱配置</h4>
                         <ul>
-                            <li>OS 级文件/网络隔离</li>
-                            <li>allowedDomains 白名单</li>
-                            <li>审计日志全量记录</li>
+                            <li>OS 级隔离</li>
+                            <li>审计日志</li>
                         </ul>
                     </div>
                 </div>
-                <p class="magic" style="margin-top: 15px;">
-                    来源：Anthropic 官方 + Trail of Bits + SlowMist
+                <p style="color: #94a3b8; font-size: 0.6em; margin-top: 8px;">
+                    来源：Anthropic + Trail of Bits + SlowMist
                 </p>
+                <a href="../L4-实践经验/00-security.md" class="doc-link" target="_blank">📖 00-security.md</a>
             </section>
 
             <!-- Git规范 -->
             <section>
-                <span class="chapter-tag">Git</span>
+                <span class="tag">Git</span>
                 <h2>Git 规范</h2>
-                <div class="two-col">
-                    <div>
-                        <h3 style="color: #c4b5fd;">黄金法则</h3>
-                        <p style="color: #4ade80; font-size: 1.1em;">
-                            <strong>独立分支、原子提交、规范信息、人工必审、全程追溯</strong>
-                        </p>
-                        <h3 style="color: #c4b5fd; margin-top: 15px;">分支规范</h3>
-                        <ul style="font-size: 0.9em;">
-                            <li><code>feat/ai-collab-功能名</code></li>
-                            <li><code>fix/ai-collab-issue号</code></li>
-                            <li>禁止 AI 直接操作 main</li>
+                <div class="topic">
+                    <h4>黄金法则</h4>
+                    <p class="green" style="font-size: 1em;">
+                        <strong>独立分支、原子提交、规范信息、人工必审、全程追溯</strong>
+                    </p>
+                </div>
+                <div class="grid-2">
+                    <div class="topic">
+                        <h4>分支规范</h4>
+                        <ul>
+                            <li><code>feat/ai-collab-xxx</code></li>
+                            <li>禁止直接操作 main</li>
                         </ul>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic">
                         <h4>提交规范</h4>
                         <ul>
                             <li>Conventional Commits</li>
-                            <li>必须标注 <code>(via Claude Code)</code></li>
-                            <li>原子提交 ≤50 行改动</li>
-                        </ul>
-                        <h4 style="margin-top: 12px;">PR 模板</h4>
-                        <ul>
-                            <li>变更说明 + 关联 Issue</li>
-                            <li>测试清单（100% 人工审核）</li>
-                            <li>Claude 会话 ID</li>
+                            <li><code>(via Claude Code)</code></li>
                         </ul>
                     </div>
                 </div>
+                <a href="../L4-实践经验/01-Git.md" class="doc-link" target="_blank">📖 01-Git.md</a>
             </section>
 
             <!-- 团队规范 -->
             <section>
-                <span class="chapter-tag">团队</span>
+                <span class="tag">团队</span>
                 <h2>团队规范</h2>
-                <div class="two-col">
-                    <div>
-                        <h3 style="color: #c4b5fd;">必存目录</h3>
-                        <ul style="font-size: 0.9em;">
-                            <li><code>.claude/skills/</code> — 团队共享技能</li>
-                            <li><code>.claude/commands/</code> — 自定义斜杠命令</li>
-                            <li><code>.claude/hooks/</code> — 强制自动化规则</li>
-                            <li><code>.mcp.json</code> — 团队 MCP 配置</li>
-                            <li><code>.github/</code> — PR 模板/CI/CD</li>
-                        </ul>
-                    </div>
-                    <div class="topic-card">
-                        <h4>Explore-Plan-Code-Commit</h4>
-                        <p style="margin: 5px 0;">强制 4 步流程</p>
-                        <ul>
-                            <li><strong>Explore</strong> — 只读扫描</li>
-                            <li><strong>Plan</strong> — 生成方案、人工审核</li>
-                            <li><strong>Code</strong> — 原子修改、自动测试</li>
-                            <li><strong>Commit</strong> — 规范提交、人工必审</li>
-                        </ul>
-                    </div>
+                <div class="topic">
+                    <h4>必存目录</h4>
+                    <ul>
+                        <li><code>.claude/skills/</code> 团队共享技能</li>
+                        <li><code>.claude/commands/</code> 斜杠命令</li>
+                        <li><code>.claude/hooks/</code> 自动化规则</li>
+                        <li><code>.mcp.json</code> MCP 配置</li>
+                    </ul>
                 </div>
+                <div class="topic">
+                    <h4>Explore-Plan-Code-Commit</h4>
+                    <p style="color: #e9d5ff;">强制 4 步流程</p>
+                </div>
+                <a href="../L4-实践经验/02-team-norms.md" class="doc-link" target="_blank">📖 02-team-norms.md</a>
             </section>
 
             <!-- 省钱 -->
             <section>
-                <span class="chapter-tag">省钱</span>
+                <span class="tag">省钱</span>
                 <h2>省钱最佳实践</h2>
-                <div class="three-col">
-                    <div class="topic-card">
+                <div class="grid-3">
+                    <div class="topic">
                         <h4>上下文控制</h4>
                         <ul>
                             <li>CLAUDE.md ≤150 行</li>
                             <li>每 5-6 轮 /compact</li>
-                            <li>一次一会话，切换 /clear</li>
                         </ul>
-                        <p style="margin-top: 8px;"><small>效果：省 40-88%</small></p>
+                        <p class="green" style="font-size: 0.8em;">省 40-88%</p>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic">
                         <h4>文件过滤</h4>
                         <ul>
-                            <li>.claudeignore 屏蔽</li>
-                            <li>node_modules/dist/.env</li>
-                            <li>手动精准加载</li>
+                            <li>.claudeignore</li>
+                            <li>精准加载</li>
                         </ul>
-                        <p style="margin-top: 8px;"><small>效果：省 60%+</small></p>
+                        <p class="green" style="font-size: 0.8em;">省 60%+</p>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic">
                         <h4>模型分层</h4>
                         <ul>
-                            <li><strong>Haiku</strong> — 简单任务</li>
-                            <li><strong>Sonnet</strong> — 业务开发</li>
-                            <li><strong>Opus</strong> — 仅必要时</li>
+                            <li><strong>Haiku</strong> 简单任务</li>
+                            <li><strong>Sonnet</strong> 业务开发</li>
+                            <li><strong>Opus</strong> 仅必要时</li>
                         </ul>
-                        <p style="margin-top: 8px;"><small>效果：省 40-80%</small></p>
                     </div>
                 </div>
-                <p class="magic" style="margin-top: 10px;">
-                    <strong>公式：</strong>精简 CLAUDE.md + .claudeignore + 任务拆分 + 模型分层 + 前缀缓存
-                </p>
+                <a href="../L4-实践经验/03-save-money.md" class="doc-link" target="_blank">📖 03-save-money.md</a>
             </section>
 
             <!-- 工作流 -->
             <section>
-                <span class="chapter-tag">工作流</span>
+                <span class="tag">工作流</span>
                 <h2>自动化工作流</h2>
-                <div class="two-col">
-                    <div>
-                        <h3 style="color: #c4b5fd;">四大自动化基石</h3>
-                        <ul style="font-size: 0.9em;">
-                            <li><strong>Hooks</strong> — 管强制（事件触发）</li>
-                            <li><strong>Skills</strong> — 管流程（模块化 SOP）</li>
-                            <li><strong>MCP</strong> — 管外部（连接真实世界）</li>
-                            <li><strong>Commands</strong> — 管快捷（一键自动化）</li>
-                        </ul>
-                        <h3 style="color: #c4b5fd; margin-top: 15px;">代理循环</h3>
-                        <p style="font-size: 0.85em;">执行 → 测试 → 失败 → 修复 → 再测试 → 通过 → 提交</p>
-                        <p style="margin-top: 5px;"><small>效果：缺陷率降低 60%</small></p>
-                    </div>
-                    <div class="topic-card">
-                        <h4>MCP+Skill 自动化闭环</h4>
-                        <p>Skill（SOP）→ MCP（执行）→ Hook（验证）→ 闭环</p>
-                        <h4 style="margin-top: 12px;">必配 Hooks</h4>
-                        <ul>
-                            <li>PreToolUse — 安全检查</li>
-                            <li>PostToolUse — 自动格式化</li>
-                            <li>Stop — 通知</li>
-                            <li>PreCompact — 防止遗忘</li>
-                        </ul>
-                    </div>
+                <div class="topic">
+                    <h4>四大自动化基石</h4>
+                    <ul>
+                        <li><strong>Hooks</strong> — 管强制（事件触发）</li>
+                        <li><strong>Skills</strong> — 管流程（模块化 SOP）</li>
+                        <li><strong>MCP</strong> — 管外部（连接真实世界）</li>
+                        <li><strong>Commands</strong> — 管快捷（一键自动化）</li>
+                    </ul>
                 </div>
+                <div class="topic">
+                    <h4>代理循环</h4>
+                    <p style="color: #e9d5ff;">
+                        执行 → 测试 → 失败 → 修复 → 再测试 → 通过 → 提交<br>
+                        <span class="green">缺陷率降低 60%</span>
+                    </p>
+                </div>
+                <a href="../L4-实践经验/04-workflow.md" class="doc-link" target="_blank">📖 04-workflow.md</a>
             </section>
 
             <!-- TDD -->
             <section>
-                <span class="chapter-tag">TDD</span>
+                <span class="tag">TDD</span>
                 <h2>TDD 测试驱动开发</h2>
-                <div class="two-col">
-                    <div>
-                        <h3 style="color: #c4b5fd;">红-绿-重构</h3>
-                        <ol style="font-size: 0.9em; text-align: left;">
-                            <li><strong>红</strong> — 写测试，运行确认失败</li>
-                            <li><strong>绿</strong> — 写实现，测试通过</li>
-                            <li><strong>重构</strong> — 优化代码</li>
-                        </ol>
-                        <h3 style="color: #c4b5fd; margin-top: 15px;">强制约束</h3>
-                        <ul style="font-size: 0.85em;">
+                <div class="topic">
+                    <h4>红-绿-重构</h4>
+                    <ol style="color: #e9d5ff; text-align: left; font-size: 0.9em;">
+                        <li><strong>红</strong> — 写测试，运行确认失败</li>
+                        <li><strong>绿</strong> — 写实现，测试通过</li>
+                        <li><strong>重构</strong> — 优化代码</li>
+                    </ol>
+                </div>
+                <div class="grid-2">
+                    <div class="topic">
+                        <h4>强制约束</h4>
+                        <ul>
                             <li>禁止 mock 不存在代码</li>
                             <li>禁止修改已提交测试</li>
-                            <li>每步运行测试报告结果</li>
                         </ul>
                     </div>
-                    <div class="topic-card">
+                    <div class="topic">
                         <h4>质量门禁</h4>
                         <ul>
                             <li>覆盖率 ≥85%</li>
                             <li>测试通过 + lint 无错误</li>
-                            <li>格式合规</li>
                         </ul>
-                        <h4 style="margin-top: 12px;">Hooks 自动化</h4>
-                        <ul>
-                            <li>onStop — 自动测试</li>
-                            <li>onCommit — 强制验证</li>
-                        </ul>
-                        <p style="margin-top: 8px;"><small>效果：AI 代码缺陷率降低 60%+</small></p>
                     </div>
                 </div>
+                <a href="../L4-实践经验/05-TDD.md" class="doc-link" target="_blank">📖 05-TDD.md</a>
             </section>
 
-            <!-- L4 总结 -->
+            <!-- 总结 -->
             <section>
                 <h2>L4 总结</h2>
-                <div class="two-col">
-                    <div class="topic-card">
-                        <h4>已掌握</h4>
-                        <ul>
-                            <li class="highlight">✅ 安全三大原则</li>
-                            <li class="highlight">✅ Git 黄金法则</li>
-                            <li class="highlight">✅ 团队规范最佳实践</li>
-                            <li class="highlight">✅ 省钱公式</li>
-                            <li class="highlight">✅ 四大自动化基石</li>
-                            <li class="highlight">✅ TDD 红-绿-重构</li>
-                        </ul>
-                    </div>
-                    <div class="topic-card">
-                        <h4>恭喜完成！</h4>
-                        <p style="color: #e9d5ff;">你已掌握 Claude Code 从入门到实践的全部核心技能</p>
-                        <p style="margin-top: 15px;"><a href="index.html" style="color: #a78bfa;">← 返回首页</a></p>
-                    </div>
+                <div class="topic" style="max-width: 400px;">
+                    <h4>已掌握</h4>
+                    <ul>
+                        <li class="green">✅ 安全三大原则</li>
+                        <li class="green">✅ Git 黄金法则</li>
+                        <li class="green">✅ 团队规范</li>
+                        <li class="green">✅ 省钱公式</li>
+                        <li class="green">✅ 四大自动化</li>
+                        <li class="green">✅ TDD</li>
+                    </ul>
                 </div>
-                <p class="magic" style="margin-top: 30px;">
+                <p class="green" style="margin-top: 20px;">
                     <i class="fas fa-trophy"></i> 完成全部 L1-L4 学习！
+                </p>
+                <p style="margin-top: 10px;">
+                    <a href="index.html" style="color: #a78bfa; font-size: 0.8em;">
+                        返回首页 <i class="fas fa-home"></i>
+                    </a>
                 </p>
             </section>
 
@@ -329,9 +307,7 @@
             transition: "slide",
             width: "100%",
             height: "100%",
-            margin: 0.04,
-            minScale: 0.5,
-            maxScale: 1.5
+            margin: 0.04
         });
     </script>
 </body>

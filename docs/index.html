@@ -4,220 +4,117 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code 中文教程 - 互动魔法书</title>
+    <title>Claude Code 中文教程</title>
 
-    <!-- Reveal.js 核心文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: "Microsoft YaHei", system-ui;
-        }
+        body { font-family: "Microsoft YaHei", system-ui; }
         .reveal { height: 100vh; }
         .reveal .slides { text-align: center; }
-        .reveal h1, .reveal h2 { color: #a78bfa; }
-        .reveal h1 { font-size: 1.8em; }
-        .reveal h2 { font-size: 1.3em; }
-        .reveal p { font-size: 0.7em; }
-        .magic { color: #c4b5fd; font-size: 1em; }
+        .reveal h1 { color: #a78bfa; font-size: 2em; }
+        .reveal p { font-size: 0.8em; }
+        .subtitle { color: #c4b5fd; font-size: 1.2em; }
+        .chapters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 30px auto;
+        }
         .chapter-card {
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(139, 92, 246, 0.15);
             border: 2px solid #a78bfa;
-            border-radius: 12px;
-            padding: 15px 20px;
-            margin: 10px;
+            border-radius: 16px;
+            padding: 25px;
             text-align: left;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            cursor: pointer;
         }
         .chapter-card:hover {
-            background: rgba(139, 92, 246, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.3);
+            background: rgba(139, 92, 246, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
         }
-        .chapter-card h3 {
+        .chapter-card h2 {
             color: #a78bfa;
-            margin-top: 0;
-            font-size: 1.2em;
+            margin: 0 0 8px 0;
+            font-size: 1.3em;
         }
-        .chapter-card p {
+        .chapter-card .desc {
             color: #e9d5ff;
-            margin: 8px 0;
-            font-size: 0.75em;
+            margin: 0;
+            font-size: 0.85em;
         }
-        .chapter-card .meta {
+        .chapter-card .count {
             color: #94a3b8;
-            font-size: 0.7em;
-        }
-        .chapter-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 18px;
-            background: #a78bfa;
-            color: #1e1b4b !important;
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: bold;
             font-size: 0.75em;
-            transition: all 0.3s ease;
+            margin-top: 8px;
         }
-        .chapter-link:hover {
-            background: #c4b5fd;
-            transform: scale(1.03);
+        .chapter-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            width: 100%;
-        }
-        .grid-4 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .footer-links {
+        .footer {
             position: fixed;
-            bottom: 15px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 100;
-        }
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
+            color: #64748b;
             font-size: 0.7em;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover {
-            color: #a78bfa;
         }
     </style>
 </head>
 
 <body>
+
     <div class="reveal">
         <div class="slides">
 
-            <!-- 第1页：标题 -->
             <section>
-                <h1 style="font-size: 3em;">✨ Claude Code 中文教程</h1>
-                <p class="magic">从零到高手 · 系统学习路径</p>
-                <p><strong>L1 → L2 → L3 → L4</strong></p>
-                <br>
-                <h3>专为中文开发者打造的 Claude Code 实战宝典</h3>
-                <p class="meta" style="margin-top: 50px;">
-                    <i class="fas fa-book"></i> 共 4 阶段 28 章节 · 覆盖安装到源码解读
-                </p>
-            </section>
+                <h1>Claude Code 中文教程</h1>
+                <p class="subtitle">从零到高手 · 系统学习路径</p>
 
-            <!-- 第2页：项目介绍 -->
-            <section>
-                <h2>这是什么？</h2>
-                <p style="font-size: 1.4em; line-height: 1.6;">
-                    一套 <strong>最完整、最系统</strong> 的 Claude Code 中文学习教程<br>
-                    从第一次打开 Claude 到熟练搭建复杂 AI Agent
-                </p>
-                <div style="margin-top: 40px;">
-                    <p><i class="fas fa-check-circle" style="color: #4ade80;"></i> 安装配置 · 清晰表达 · 工具使用</p>
-                    <p><i class="fas fa-check-circle" style="color: #4ade80;"></i> Git 协作 · Skills · MCP 扩展</p>
-                    <p><i class="fas fa-check-circle" style="color: #4ade80;"></i> 权限管理 · Hooks · Subagent</p>
-                    <p><i class="fas fa-check-circle" style="color: #4ade80;"></i> Agent Teams · Computer Use · 源码解读</p>
-                </div>
-            </section>
-
-            <!-- 第3页：学习路径 -->
-            <section data-background="#1e1b4b">
-                <h2>清晰四阶段学习路径</h2>
-                <div class="grid-2">
+                <div class="chapters">
                     <div class="chapter-card">
-                        <h3><i class="fas fa-rocket"></i> L1 掌握用法</h3>
-                        <p class="meta">6 章节 · 快速上手</p>
-                        <p>安装配置 · 清晰表达 · 工具使用<br>Git 协作 · Skills · MCP</p>
-                        <a href="L1.html" class="chapter-link">开始学习 →</a>
+                        <a href="L1.html">
+                            <h2><i class="fas fa-rocket"></i> L1 掌握用法</h2>
+                            <p class="desc">安装 · 表达 · 工具 · Git · Skills · MCP</p>
+                            <p class="count">6 章节</p>
+                        </a>
                     </div>
                     <div class="chapter-card">
-                        <h3><i class="fas fa-bolt"></i> L2 熟练运用</h3>
-                        <p class="meta">9 章节 · 效率飞跃</p>
-                        <p>任务分解 · CLAUDE.md · 上下文管理<br>权限 · Hooks · Subagent · Teams</p>
-                        <a href="L2.html" class="chapter-link">开始学习 →</a>
+                        <a href="L2.html">
+                            <h2><i class="fas fa-bolt"></i> L2 熟练运用</h2>
+                            <p class="desc">任务分解 · CLAUDE.md · 上下文 · 权限</p>
+                            <p class="count">9 章节</p>
+                        </a>
                     </div>
                     <div class="chapter-card">
-                        <h3><i class="fas fa-code"></i> L3 技术视角</h3>
-                        <p class="meta">13 章节 · 理解原理</p>
-                        <p>Agent 架构 · Tools 系统 · Subagent<br>MCP · 记忆 · 权限 · 省 Token</p>
-                        <a href="L3.html" class="chapter-link">开始学习 →</a>
+                        <a href="L3.html">
+                            <h2><i class="fas fa-code"></i> L3 技术视角</h2>
+                            <p class="desc">架构 · Tools · Subagent · MCP · 记忆</p>
+                            <p class="count">13 章节</p>
+                        </a>
                     </div>
                     <div class="chapter-card">
-                        <h3><i class="fas fa-shield-halved"></i> L4 实践经验</h3>
-                        <p class="meta">6 章节 · 工程化落地</p>
-                        <p>安全 · Git 规范 · 团队规范<br>省钱 · 工作流 · TDD</p>
-                        <a href="L4.html" class="chapter-link">开始学习 →</a>
+                        <a href="L4.html">
+                            <h2><i class="fas fa-shield-halved"></i> L4 实践经验</h2>
+                            <p class="desc">安全 · Git · 团队 · 省钱 · 工作流 · TDD</p>
+                            <p class="count">6 章节</p>
+                        </a>
                     </div>
                 </div>
-            </section>
 
-            <!-- 第4页：适合人群 -->
-            <section>
-                <h2>适合谁学习？</h2>
-                <div style="text-align: left; font-size: 1.2em; line-height: 2.2; max-width: 800px; margin: 0 auto;">
-                    <p><i class="fas fa-user-graduate" style="color: #a78bfa;"></i> 编程新手想用 AI 提升效率</p>
-                    <p><i class="fas fa-laptop-code" style="color: #a78bfa;"></i> 开发者想掌握 AI Agent 开发</p>
-                    <p><i class="fas fa-users" style="color: #a78bfa;"></i> 技术团队想规范化 AI 协作</p>
-                    <p><i class="fas fa-brain" style="color: #a78bfa;"></i> 想要深入理解 Agent 原理</p>
-                </div>
-            </section>
-
-            <!-- 第5页：快速开始 -->
-            <section>
-                <h2>如何开始？</h2>
-                <ol style="font-size: 1.4em; line-height: 2.2; text-align: left; max-width: 700px; margin: 0 auto;">
-                    <li><strong>选择章节</strong> — 点击上方卡片进入对应阶段</li>
-                    <li><strong>边学边练</strong> — 在 Claude Code 中实战</li>
-                    <li><strong>循序渐进</strong> — L1 → L2 → L3 → L4</li>
-                    <li><strong>遇到问题</strong> — 欢迎提交 Issue</li>
-                </ol>
-            </section>
-
-            <!-- 第6页：行动号召 -->
-            <section>
-                <h1>准备好了吗？</h1>
-                <div style="margin: 40px 0;">
-                    <p style="font-size: 1.5em; color: #c4b5fd;">
-                        点击章节卡片，开始你的 Claude Code 之旅
-                    </p>
-                </div>
-                <div class="grid-4">
-                    <a href="L1.html" style="color: #a78bfa; text-decoration: none; padding: 20px; border: 1px solid #a78bfa; border-radius: 12px;">
-                        <i class="fas fa-rocket" style="font-size: 2em;"></i><br>
-                        L1 掌握用法
-                    </a>
-                    <a href="L2.html" style="color: #a78bfa; text-decoration: none; padding: 20px; border: 1px solid #a78bfa; border-radius: 12px;">
-                        <i class="fas fa-bolt" style="font-size: 2em;"></i><br>
-                        L2 熟练运用
-                    </a>
-                    <a href="L3.html" style="color: #a78bfa; text-decoration: none; padding: 20px; border: 1px solid #a78bfa; border-radius: 12px;">
-                        <i class="fas fa-code" style="font-size: 2em;"></i><br>
-                        L3 技术视角
-                    </a>
-                    <a href="L4.html" style="color: #a78bfa; text-decoration: none; padding: 20px; border: 1px solid #a78bfa; border-radius: 12px;">
-                        <i class="fas fa-shield-halved" style="font-size: 2em;"></i><br>
-                        L4 实践经验
-                    </a>
-                </div>
-                <p class="magic" style="margin-top: 50px;">让 Claude 成为你的超级编程搭档！</p>
+                <p class="footer">共 34 章节 · 点击卡片开始学习</p>
             </section>
 
         </div>
     </div>
 
-    <!-- Reveal.js 脚本 -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.js"></script>
     <script>
         Reveal.initialize({
@@ -225,9 +122,7 @@
             transition: "slide",
             width: "100%",
             height: "100%",
-            margin: 0.05,
-            minScale: 0.5,
-            maxScale: 1.5
+            margin: 0.1
         });
     </script>
 </body>
