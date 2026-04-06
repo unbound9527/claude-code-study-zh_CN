@@ -78,6 +78,7 @@ L1 掌握用法 → L2 熟练运用 → L3 技术视角 → L4 实践经验
 | [Agent Teams](L2-熟练运用/07-agent-teams.md) | 多AI团队协作 |
 | [Computer Use](L2-熟练运用/08-compute-use.md) | 电脑操控能力 |
 | [Link WeChat](L2-熟练运用/09-link-wechat.md) | 微信链接能力 |
+| [Hidden Features](L2-熟练运用/10-hidden-features.md) | 创始人分享用法 |
 
 ### L3 技术视角 — 原理与实现
 
